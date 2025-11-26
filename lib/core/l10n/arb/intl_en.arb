@@ -1,0 +1,5 @@
+{
+    "intro1":"Dive into a paginated list of posts from everyone you follow and new profiles to discover. Infinite scrolling means the feed never ends—stay updated, all day long.",
+    "intro2":"Easily create new posts, update existing ones, and manage your content. Upload images and videos directly from your device using simple media attachments.",
+    "intro3": "Your account is protected by token-based authentication. Our system handles secure login, logout, and automatic token refresh in the background, keeping your session seamless and secure."
+}
