@@ -6,4 +6,6 @@ class SplashInitial extends SplashState {}
 
 class SplashLoading extends SplashState {}
 
-class SplashLoaded extends SplashState {}
+class SplashUnAuthenticated extends SplashState {}
+
+class SplashAuthenticated extends SplashState {}

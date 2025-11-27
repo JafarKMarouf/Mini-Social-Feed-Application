@@ -83,6 +83,441 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Enter your name`
+  String get enterName {
+    return Intl.message(
+      'Enter your name',
+      name: 'enterName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email`
+  String get enterEmail {
+    return Intl.message(
+      'Enter your email',
+      name: 'enterEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your password`
+  String get enterPassword {
+    return Intl.message(
+      'Enter your password',
+      name: 'enterPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have an account?  `
+  String get dontHaveAccount {
+    return Intl.message(
+      'Don\'t have an account?  ',
+      name: 'dontHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?  `
+  String get alreadyHaveAccount {
+    return Intl.message(
+      'Already have an account?  ',
+      name: 'alreadyHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message('Login', name: 'login', desc: '', args: []);
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message('Register', name: 'register', desc: '', args: []);
+  }
+
+  /// `Forgot password?`
+  String get forgetPassword {
+    return Intl.message(
+      'Forgot password?',
+      name: 'forgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome back! Glad to see you, Again!`
+  String get welcomeLogin {
+    return Intl.message(
+      'Welcome back! Glad to see you, Again!',
+      name: 'welcomeLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello! Register to get started`
+  String get welcomeRegister {
+    return Intl.message(
+      'Hello! Register to get started',
+      name: 'welcomeRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading...`
+  String get loading {
+    return Intl.message('Loading...', name: 'loading', desc: '', args: []);
+  }
+
+  /// `This name is required`
+  String get nameRequired {
+    return Intl.message(
+      'This name is required',
+      name: 'nameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This email is required`
+  String get emailRequired {
+    return Intl.message(
+      'This email is required',
+      name: 'emailRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This password is required`
+  String get passwordRequired {
+    return Intl.message(
+      'This password is required',
+      name: 'passwordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must be at least 2 characters`
+  String get nameMinLength {
+    return Intl.message(
+      'Must be at least 2 characters',
+      name: 'nameMinLength',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email address`
+  String get valEmail {
+    return Intl.message(
+      'Please enter a valid email address',
+      name: 'valEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 8 characters`
+  String get passwordLength {
+    return Intl.message(
+      'Password must be at least 8 characters',
+      name: 'passwordLength',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain at least one uppercase letter`
+  String get passwordContainUpperCharacter {
+    return Intl.message(
+      'Password must contain at least one uppercase letter',
+      name: 'passwordContainUpperCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain at least one lowercase letter`
+  String get passwordContainLowerCharacter {
+    return Intl.message(
+      'Password must contain at least one lowercase letter',
+      name: 'passwordContainLowerCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain at least one number`
+  String get passwordContainNumber {
+    return Intl.message(
+      'Password must contain at least one number',
+      name: 'passwordContainNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain at least one special character`
+  String get passwordContainSpecialCharacter {
+    return Intl.message(
+      'Password must contain at least one special character',
+      name: 'passwordContainSpecialCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connection timeout with the server.`
+  String get connectionTimeout {
+    return Intl.message(
+      'Connection timeout with the server.',
+      name: 'connectionTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request timed out while sending data.`
+  String get sendTimeout {
+    return Intl.message(
+      'Request timed out while sending data.',
+      name: 'sendTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Response reception timed out from the server.`
+  String get receiveTimeout {
+    return Intl.message(
+      'Response reception timed out from the server.',
+      name: 'receiveTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Security certificate is invalid.`
+  String get badCertificate {
+    return Intl.message(
+      'Security certificate is invalid.',
+      name: 'badCertificate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The request was cancelled.`
+  String get requestCancelled {
+    return Intl.message(
+      'The request was cancelled.',
+      name: 'requestCancelled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No internet connection.`
+  String get noInternetConnection {
+    return Intl.message(
+      'No internet connection.',
+      name: 'noInternetConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An unexpected error occurred. Please try again.`
+  String get unknownError {
+    return Intl.message(
+      'An unexpected error occurred. Please try again.',
+      name: 'unknownError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bad request. Please check the data submitted.`
+  String get badRequest {
+    return Intl.message(
+      'Bad request. Please check the data submitted.',
+      name: 'badRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unauthorized access.`
+  String get unauthorized {
+    return Intl.message(
+      'Unauthorized access.',
+      name: 'unauthorized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forbidden access. You do not have permission.`
+  String get forbidden {
+    return Intl.message(
+      'Forbidden access. You do not have permission.',
+      name: 'forbidden',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The page or service was not found.`
+  String get notFound {
+    return Intl.message(
+      'The page or service was not found.',
+      name: 'notFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The request timed out.`
+  String get requestTimeout {
+    return Intl.message(
+      'The request timed out.',
+      name: 'requestTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data conflict occurred.`
+  String get conflict {
+    return Intl.message(
+      'Data conflict occurred.',
+      name: 'conflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The submitted data is incorrect/invalid.`
+  String get unprocessableEntity {
+    return Intl.message(
+      'The submitted data is incorrect/invalid.',
+      name: 'unprocessableEntity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request limit exceeded. Please try again later.`
+  String get tooManyRequests {
+    return Intl.message(
+      'Request limit exceeded. Please try again later.',
+      name: 'tooManyRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internal server error.`
+  String get internalServerError {
+    return Intl.message(
+      'Internal server error.',
+      name: 'internalServerError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bad gateway error.`
+  String get badGateway {
+    return Intl.message(
+      'Bad gateway error.',
+      name: 'badGateway',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service is currently unavailable.`
+  String get serviceUnavailable {
+    return Intl.message(
+      'Service is currently unavailable.',
+      name: 'serviceUnavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gateway timeout.`
+  String get gatewayTimeout {
+    return Intl.message(
+      'Gateway timeout.',
+      name: 'gatewayTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while processing data from the server. Please try again later.`
+  String get dataProcessingError {
+    return Intl.message(
+      'An error occurred while processing data from the server. Please try again later.',
+      name: 'dataProcessingError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Server error ({statusCode}).`
+  String serverErrorWithCode(Object statusCode) {
+    return Intl.message(
+      'Server error ($statusCode).',
+      name: 'serverErrorWithCode',
+      desc: '',
+      args: [statusCode],
+    );
+  }
+
+  /// `Request error ({statusCode}).`
+  String requestErrorWithCode(Object statusCode) {
+    return Intl.message(
+      'Request error ($statusCode).',
+      name: 'requestErrorWithCode',
+      desc: '',
+      args: [statusCode],
+    );
+  }
+
+  /// `Unknown error ({statusCode} or no code).`
+  String unknownErrorCode(Object statusCode) {
+    return Intl.message(
+      'Unknown error ($statusCode or no code).',
+      name: 'unknownErrorCode',
+      desc: '',
+      args: [statusCode],
+    );
+  }
+
+  /// `Session validity has ended. You need to log in again.`
+  String get sessionExpired {
+    return Intl.message(
+      'Session validity has ended. You need to log in again.',
+      name: 'sessionExpired',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

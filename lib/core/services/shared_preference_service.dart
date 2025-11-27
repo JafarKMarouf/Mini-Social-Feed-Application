@@ -30,7 +30,6 @@ class SharedPreferenceService {
   }
 
   // --- 4. Delete/Clear Operations ---
-
   Future<bool> removeKey(String key) async {
     return await _preferences.remove(key);
   }

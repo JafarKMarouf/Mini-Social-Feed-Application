@@ -33,8 +33,11 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return BlocListener<SplashCubit, SplashState>(
       listener: (context, state) {
-        if (state is SplashLoaded) {
-          AppNavigator.pushReplacement(context, AppRoutePaths.onboarding);
+        if (state is SplashUnAuthenticated) {
+          AppNavigator.pushReplacementNamed(AppRoutePaths.onboarding);
+        }
+        if (state is SplashAuthenticated) {
+          AppNavigator.pushReplacementNamed(AppRoutePaths.home);
         }
       },
       child: Scaffold(
@@ -46,13 +49,13 @@ class _SplashViewState extends State<SplashView> {
               SvgPicture.asset(
                 width: 90,
                 height: 90,
-                AppImageManager.imagesBranding,
+                AppImageManager.branding,
                 fit: BoxFit.fill,
               ),
               SizedBox(height: AppHeightManager.h2),
 
               SvgPicture.asset(
-                AppImageManager.imagesLogo,
+                AppImageManager.logo,
                 colorFilter: const ColorFilter.mode(
                   AppColorManager.white,
                   BlendMode.srcIn,

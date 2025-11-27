@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mini_social_feed/core/constants/app_keys.dart';
+import 'package:mini_social_feed/core/constants/app_constant_manager.dart';
 import 'package:mini_social_feed/core/services/shared_preference_service.dart';
 
 part 'locale_state.dart';
@@ -25,7 +25,7 @@ class LocaleCubit extends Cubit<LocaleState> {
     if (supportedLocales.contains(newLocale)) {
       emit(LocaleState(newLocale));
       await _prefsService.set<String>(
-        AppKeys.localeLanguageCode,
+        AppConstantManager.localeLanguageCode,
         newLocale.languageCode,
       );
     } else {
@@ -37,7 +37,7 @@ class LocaleCubit extends Cubit<LocaleState> {
 
   Future<Locale> _loadLocale() async {
     final String? savedCode = _prefsService.get<String>(
-      AppKeys.localeLanguageCode,
+      AppConstantManager.localeLanguageCode,
     );
     if (savedCode != null) {
       final savedLocale = Locale(savedCode);

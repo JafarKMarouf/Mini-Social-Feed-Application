@@ -1,15 +1,15 @@
 class AppImageManager {
   AppImageManager._();
 
-  static const String imagesPath = 'assets/images';
+  static const String path = 'assets/images';
 
-  static const String imagesBranding = '$imagesPath/branding.svg';
+  static const String branding = '$path/branding.svg';
 
-  static const String imagesLogo = '$imagesPath/logo.svg';
+  static const String logo = '$path/logo.svg';
 
-  static const String imagesIntro1 = '$imagesPath/intro1.svg';
+  static const String intro1 = '$path/intro1.svg';
 
-  static const String imagesIntro2 = '$imagesPath/intro2.svg';
+  static const String intro2 = '$path/intro2.svg';
 
-  static const String imagesIntro3 = '$imagesPath/intro3.svg';
+  static const String intro3 = '$path/intro3.svg';
 }

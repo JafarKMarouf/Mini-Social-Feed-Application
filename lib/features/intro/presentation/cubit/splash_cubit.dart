@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_social_feed/core/services/secure_storage_service.dart';
 
 part 'splash_state.dart';
 
@@ -10,12 +11,15 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> checkAppStatus() async {
     emit(SplashLoading());
     await Future.delayed(const Duration(seconds: 4));
-    emit(SplashLoaded());
-  }
+    String? accessToken = await SecureStorageService.getAccessToken();
+    String? refreshToken = await SecureStorageService.getRefreshToken();
 
-  @override
-  void onChange(Change<SplashState> change) {
-    log('${change.currentState}, ${change.nextState}');
-    super.onChange(change);
+    log('------------accessToken:$accessToken}');
+    log('------------refreshToken:$refreshToken}');
+    if (accessToken == null || refreshToken == null) {
+      emit(SplashUnAuthenticated());
+    } else {
+      emit(SplashAuthenticated());
+    }
   }
 }

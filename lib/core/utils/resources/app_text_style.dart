@@ -48,6 +48,15 @@ abstract class AppTextStyle {
     );
   }
 
+  static TextStyle styleUrbanistBold17(BuildContext context) {
+    return const TextStyle(
+      fontSize: 17,
+      fontWeight: FontWeight.w700,
+      fontFamily: FontFamilyManager.urbanist,
+      color: AppColorManager.primary,
+    );
+  }
+
   static TextStyle styleUrbanistBold22(BuildContext context) {
     return const TextStyle(
       fontSize: 22,
@@ -68,7 +77,7 @@ abstract class AppTextStyle {
 
   static TextStyle styleUrbanistBold30(BuildContext context) {
     return const TextStyle(
-      fontSize: 16,
+      fontSize: 30,
       fontWeight: FontWeight.w700,
       fontFamily: FontFamilyManager.urbanist,
       color: AppColorManager.dark,

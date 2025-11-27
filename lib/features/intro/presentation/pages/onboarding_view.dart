@@ -91,7 +91,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           child: FloatingActionButton(
             onPressed: () {
               if (isLast) {
-                AppNavigator.pushReplacement(context, AppRoutePaths.login);
+                AppNavigator.pushReplacementNamed(AppRoutePaths.login);
               } else {
                 navigateToNextPage(
                   controller,

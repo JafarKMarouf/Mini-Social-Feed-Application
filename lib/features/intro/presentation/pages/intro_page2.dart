@@ -23,7 +23,7 @@ class IntroPage2 extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.4,
               width: MediaQuery.of(context).size.width * 0.7,
               child: SvgPicture.asset(
-                AppImageManager.imagesIntro2,
+                AppImageManager.intro2,
                 fit: BoxFit.contain,
               ),
             ),

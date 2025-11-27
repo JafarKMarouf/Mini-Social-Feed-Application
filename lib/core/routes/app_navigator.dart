@@ -1,20 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
+import 'package:mini_social_feed/core/constants/app_constant_manager.dart';
 
 class AppNavigator {
-  static void push(BuildContext context, String page) {
-    GoRouter.of(context).push(page);
+  static void push(Widget page) {
+    Get.to(
+      () => page,
+      transition: AppConstantManager.kTransition,
+      duration: AppConstantManager.kTransitionDuration,
+    );
   }
 
-  static void pushNamed(
-    BuildContext context,
-    String page,
-    Map<String, String> pathParameters,
-  ) {
-    context.pushNamed(page, pathParameters: pathParameters);
+  static void pushNamed(String routeName, {dynamic arguments}) {
+    Get.toNamed(routeName, arguments: arguments);
   }
 
-  static void pushReplacement(BuildContext context, String page) {
-    GoRouter.of(context).pushReplacement(page);
+  static void pushReplacement(Widget page) {
+    Get.off(
+      () => page,
+      transition: AppConstantManager.kTransition,
+      duration: AppConstantManager.kTransitionDuration,
+      curve: Curves.easeIn,
+    );
+  }
+
+  static void pushReplacementNamed(String routeName, {dynamic arguments}) {
+    Get.offNamed(routeName, arguments: arguments);
+  }
+
+  static void pushAndRemoveUntil(Widget page) {
+    Get.offAll(
+      () => page,
+      transition: AppConstantManager.kTransition,
+      duration: AppConstantManager.kTransitionDuration,
+    );
+  }
+
+  static void pushNamedAndRemoveUntil(String routeName) {
+    Get.offAllNamed(routeName);
   }
 }
