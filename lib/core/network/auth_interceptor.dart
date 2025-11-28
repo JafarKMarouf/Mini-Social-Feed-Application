@@ -76,7 +76,7 @@ class DioClient {
         _rejectPendingRequests(error);
       }
     } catch (e) {
-      log('Error handling unauthorized request: $e');
+      log('Error handling unauthorized requests: $e');
       handler.next(error);
       _rejectPendingRequests(error);
     } finally {
@@ -176,7 +176,7 @@ class DioClient {
       try {
         await _retryRequest(request);
       } catch (e) {
-        log('Error processing pending request: $e');
+        log('Error processing pending requests: $e');
       }
     }
   }

@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboutApp": MessageLookupByLibrary.simpleMessage("About App"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account?  ",
     ),
@@ -38,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "badRequest": MessageLookupByLibrary.simpleMessage(
       "Bad request. Please check the data submitted.",
     ),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "changeLanguage": MessageLookupByLibrary.simpleMessage("Change Language"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "conflict": MessageLookupByLibrary.simpleMessage("Data conflict occurred."),
     "connectionTimeout": MessageLookupByLibrary.simpleMessage(
       "Connection timeout with the server.",
@@ -73,8 +77,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "intro3": MessageLookupByLibrary.simpleMessage(
       "Your account is protected by token-based authentication. Our system handles secure login, logout, and automatic token refresh in the background, keeping your session seamless and secure.",
     ),
+    "languageCode": MessageLookupByLibrary.simpleMessage("Arabic"),
     "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to log out?",
+    ),
+    "myAdsManagement": MessageLookupByLibrary.simpleMessage(
+      "My Ads Management",
+    ),
     "nameMinLength": MessageLookupByLibrary.simpleMessage(
       "Must be at least 2 characters",
     ),
@@ -105,6 +117,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordRequired": MessageLookupByLibrary.simpleMessage(
       "This password is required",
     ),
+    "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
     "receiveTimeout": MessageLookupByLibrary.simpleMessage(
       "Response reception timed out from the server.",
     ),

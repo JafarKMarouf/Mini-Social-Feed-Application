@@ -22,7 +22,6 @@ class BuildLoginForm extends StatelessWidget {
             children: [
               AppTextFormField(
                 controller: cubit.emailController,
-                width: AppWidthManager.w90,
                 maxLines: 1,
                 labelText: AppLocalizations.of(context).enterEmail,
                 textInputType: TextInputType.emailAddress,
@@ -35,7 +34,6 @@ class BuildLoginForm extends StatelessWidget {
               AppTextFormField(
                 controller: cubit.passwordController,
                 obscureText: cubit.isPasswordHidden,
-                width: AppWidthManager.w90,
                 maxLines: 1,
                 labelText: AppLocalizations.of(context).enterPassword,
                 textInputType: TextInputType.visiblePassword,

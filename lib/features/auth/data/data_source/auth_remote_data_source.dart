@@ -1,6 +1,7 @@
 import 'package:mini_social_feed/core/constants/api_endpoints.dart';
 import 'package:mini_social_feed/core/network/api_response.dart';
 import 'package:mini_social_feed/core/network/api_service.dart';
+import 'package:mini_social_feed/core/services/secure_storage_service.dart';
 import 'package:mini_social_feed/core/services/service_locator.dart';
 import 'package:mini_social_feed/features/auth/data/models/login_data.dart';
 import 'package:mini_social_feed/features/auth/data/models/register_data.dart';
@@ -58,7 +59,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<ApiResponse<UserModel>> getMyInfos() async {
-    var data = await getIt<ApiService>().get(url: ApiEndPoints.me);
+    String? token = await SecureStorageService.getAccessToken();
+
+    var data = await getIt<ApiService>().get(
+      url: ApiEndPoints.me,
+      token: token,
+    );
     return ApiResponse.fromJson(
       data.data,
       (json) => UserModel.fromJson(json as Map<String, dynamic>),

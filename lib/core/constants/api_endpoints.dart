@@ -7,4 +7,7 @@ class ApiEndPoints {
   static const refreshToken = '$baseUrl/token/refresh';
   static const logout = '$baseUrl/logout';
   static const me = '$baseUrl/me';
+
+  ///Post
+  static const posts = '$baseUrl/posts';
 }

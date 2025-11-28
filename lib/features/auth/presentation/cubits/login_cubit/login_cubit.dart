@@ -37,21 +37,27 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> login(LoginUserRequest request) async {
+    if (isClosed) return;
     emit(LoginLoadingState());
 
     var result = await getIt<AuthRepository>().login(request: request);
+    if (isClosed) return;
     result.fold(
       (fail) {
-        emit(
-          LoginFailureState(
-            errMsg: fail.errMessage,
-            statusCode: fail.statusCode,
-          ),
-        );
+        if (!isClosed) {
+          emit(
+            LoginFailureState(
+              errMsg: fail.errMessage,
+              statusCode: fail.statusCode,
+            ),
+          );
+        }
       },
       (success) async {
-        clearForm();
-        emit(LoginSuccessState(data: success));
+        if (!isClosed) {
+          clearForm();
+          emit(LoginSuccessState(data: success));
+        }
       },
     );
   }

@@ -1,4 +1,6 @@
 {
+    "@@locale": "en",
+    "languageCode": "Arabic",
 
     "intro1":"Dive into a paginated list of posts from everyone you follow and new profiles to discover. Infinite scrolling means the feed never ends—stay updated, all day long.",
     "intro2":"Easily create new posts, update existing ones, and manage your content. Upload images and videos directly from your device using simple media attachments.",
@@ -50,5 +52,14 @@
     "serverErrorWithCode": "Server error ({statusCode}).",
     "requestErrorWithCode": "Request error ({statusCode}).",
     "unknownErrorCode": "Unknown error ({statusCode} or no code).",
-    "sessionExpired": "Session validity has ended. You need to log in again."
+    "sessionExpired": "Session validity has ended. You need to log in again.",
+
+    "myAdsManagement": "My Ads Management",
+    "changePassword": "Change Password",
+    "changeLanguage": "Change Language",
+    "aboutApp": "About App",
+    "privacyPolicy": "Privacy Policy",
+    "logout": "Logout",
+    "logoutConfirmation": "Are you sure you want to log out?",
+    "cancel": "Cancel"
 }

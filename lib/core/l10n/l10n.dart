@@ -54,6 +54,11 @@ class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
+  /// `Arabic`
+  String get languageCode {
+    return Intl.message('Arabic', name: 'languageCode', desc: '', args: []);
+  }
+
   /// `Dive into a paginated list of posts from everyone you follow and new profiles to discover. Infinite scrolling means the feed never ends—stay updated, all day long.`
   String get intro1 {
     return Intl.message(
@@ -517,6 +522,71 @@ class AppLocalizations {
       desc: '',
       args: [],
     );
+  }
+
+  /// `My Ads Management`
+  String get myAdsManagement {
+    return Intl.message(
+      'My Ads Management',
+      name: 'myAdsManagement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Language`
+  String get changeLanguage {
+    return Intl.message(
+      'Change Language',
+      name: 'changeLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About App`
+  String get aboutApp {
+    return Intl.message('About App', name: 'aboutApp', desc: '', args: []);
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to log out?`
+  String get logoutConfirmation {
+    return Intl.message(
+      'Are you sure you want to log out?',
+      name: 'logoutConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 }
 

@@ -15,7 +15,6 @@ abstract class AppRadiusManager {
   static double r50 = 50;
 }
 
-
 abstract class AppSizeManager {
   static const double s4 = 4.0;
   static const double s8 = 8.0;

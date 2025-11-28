@@ -11,6 +11,9 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> checkAppStatus() async {
     emit(SplashLoading());
     await Future.delayed(const Duration(seconds: 4));
+
+    // await SecureStorageService.clearAllTokens();
+
     String? accessToken = await SecureStorageService.getAccessToken();
     String? refreshToken = await SecureStorageService.getRefreshToken();
 

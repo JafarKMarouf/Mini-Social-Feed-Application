@@ -11,18 +11,25 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitialState());
 
   Future<void> getMyInfos() async {
+    if (isClosed) return;
+
     var result = await getIt<AuthRepository>().getMyInfos();
+    if (isClosed) return;
     result.fold(
       (fail) {
-        emit(
-          ProfileFailureState(
-            errMsg: fail.errMessage,
-            statusCode: fail.statusCode,
-          ),
-        );
+        if (!isClosed) {
+          emit(
+            ProfileFailureState(
+              errMsg: fail.errMessage,
+              statusCode: fail.statusCode,
+            ),
+          );
+        }
       },
       (success) async {
-        emit(ProfileSuccessState(data: success));
+        if (!isClosed) {
+          emit(ProfileSuccessState(data: success));
+        }
       },
     );
   }

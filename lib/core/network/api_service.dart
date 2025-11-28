@@ -8,8 +8,19 @@ class ApiService {
 
   ApiService(DioClient dioClient) : _dio = dioClient.dio;
 
-  Future<Response> get({required String url}) async {
-    var response = await _dio.get(url);
+  Future<Response> get({
+    required String url,
+    String? token,
+    bool requiresAuth = false,
+    bool optionalAuth = false,
+  }) async {
+    Options options = Options(
+      headers: _headers(token),
+      extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
+    );
+    log('headers: ${_dio.options.headers}');
+
+    var response = await _dio.get(url, options: options);
     return response;
   }
 

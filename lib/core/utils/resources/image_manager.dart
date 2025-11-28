@@ -12,4 +12,6 @@ class AppImageManager {
   static const String intro2 = '$path/intro2.svg';
 
   static const String intro3 = '$path/intro3.svg';
+
+  static const String pattern = '$path/pattern_green.png';
 }
