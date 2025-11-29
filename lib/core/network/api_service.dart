@@ -18,10 +18,7 @@ class ApiService {
       headers: _headers(token),
       extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
     );
-    log('headers: ${_dio.options.headers}');
-
-    var response = await _dio.get(url, options: options);
-    return response;
+    return await _dio.get(url, options: options);
   }
 
   Future<Response> post({
@@ -32,8 +29,6 @@ class ApiService {
     bool optionalAuth = false,
   }) async {
     Options options;
-    log('url:$url');
-    log('body:$body');
     if (body is FormData) {
       options = Options(
         headers: _headers(token, isFormData: true),
@@ -45,11 +40,11 @@ class ApiService {
         extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
       );
     }
-    final response = await _dio.post(url, data: body, options: options);
+    var response = await _dio.post(url, data: body, options: options);
     return response;
   }
 
-  Future<Response> patch({
+  Future<Response> put({
     required String url,
     dynamic body,
     String? token,
@@ -68,8 +63,7 @@ class ApiService {
         extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
       );
     }
-    final response = await _dio.patch(url, data: body, options: options);
-    return response;
+    return await _dio.put(url, data: body, options: options);
   }
 
   Future<Response> delete({
@@ -79,7 +73,8 @@ class ApiService {
     bool requiresAuth = false,
     bool optionalAuth = false,
   }) async {
-    final response = await _dio.delete(
+    log('===============delete url:$url');
+    return await _dio.delete(
       url,
       data: body,
       options: Options(
@@ -87,7 +82,6 @@ class ApiService {
         extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
       ),
     );
-    return response;
   }
 
   Map<String, dynamic> _headers(String? token, {bool isFormData = false}) {
@@ -99,7 +93,6 @@ class ApiService {
     if (token != null) {
       headers['Authorization'] = 'Bearer $token';
     }
-
     return headers;
   }
 }

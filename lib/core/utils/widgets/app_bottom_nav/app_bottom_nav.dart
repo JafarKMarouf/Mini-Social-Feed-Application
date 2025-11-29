@@ -143,6 +143,9 @@ class AppBottomNav extends StatelessWidget {
 
   const AppBottomNav({super.key, required this.navigationShell});
 
+  void dismissKeyboard(BuildContext context) =>
+      FocusScope.of(context).unfocus();
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<NavigationCubit, NavigationState>(
@@ -156,7 +159,11 @@ class AppBottomNav extends StatelessWidget {
 
           return Scaffold(
             backgroundColor: AppColorManager.background,
-            body: navigationShell,
+            body: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () => dismissKeyboard(context),
+              child: navigationShell,
+            ),
             bottomNavigationBar: NavigationBar(
               selectedIndex: state.selectedIndex,
               onDestinationSelected: (index) =>

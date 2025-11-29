@@ -1,21 +1,23 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:mini_social_feed/core/constants/api_endpoints.dart';
 import 'package:mini_social_feed/core/constants/app_constant_manager.dart';
 import 'package:mini_social_feed/core/l10n/l10n.dart';
+import 'package:mini_social_feed/core/network/api_response.dart';
 import 'package:mini_social_feed/core/routes/app_navigator.dart';
 import 'package:mini_social_feed/core/routes/app_router_constants.dart';
 import 'package:mini_social_feed/core/services/secure_storage_service.dart';
 import 'package:mini_social_feed/core/utils/helper/app_snackbar.dart';
 
 import '../../features/auth/data/models/login_data.dart';
-import 'api_response.dart';
 
 class DioClient {
   late final Dio dio;
+  static const int _maxRetries = 2;
   bool _isRefreshing = false;
-  final List<RequestOptions> _pendingRequests = [];
+  Completer<bool>? _refreshTokenCompleter;
 
   DioClient() {
     dio = Dio(
@@ -23,26 +25,23 @@ class DioClient {
         baseUrl: ApiEndPoints.baseUrl,
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
-        followRedirects: true,
-        maxRedirects: 5,
-        validateStatus: (status) {
-          return status != null && status < 400;
-        },
+        validateStatus: (status) => status != null && status < 400,
       ),
     );
+
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final hasAccessToken = await SecureStorageService.hasAccessToken();
-          if (hasAccessToken) {
-            final accessToken = await SecureStorageService.getAccessToken();
+          final accessToken = await SecureStorageService.getAccessToken();
+          if (accessToken != null && accessToken.isNotEmpty) {
             options.headers['Authorization'] = 'Bearer $accessToken';
           }
           return handler.next(options);
         },
         onError: (error, handler) async {
-          if (error.response?.statusCode == 401) {
-            return await _handleUnauthorizedError(error, handler);
+          if (error.response?.statusCode == 401 ||
+              error.response?.statusCode == 500) {
+            return _handleUnauthorizedError(error, handler);
           }
           return handler.next(error);
         },
@@ -54,143 +53,130 @@ class DioClient {
     DioException error,
     ErrorInterceptorHandler handler,
   ) async {
-    final requestOptions = error.requestOptions;
+    final int retryCount = error.requestOptions.extra['retry_count'] ?? 0;
+    if (retryCount >= _maxRetries) {
+      return handler.reject(error);
+    }
 
-    if (_isRefreshing) {
-      _pendingRequests.add(requestOptions);
-      return;
+    error.requestOptions.extra['retry_count'] = retryCount + 1;
+    if (_isRefreshing && _refreshTokenCompleter != null) {
+      final isSuccess = await _refreshTokenCompleter!.future;
+      if (isSuccess) {
+        return _retryRequest(error.requestOptions, handler);
+      } else {
+        return handler.reject(error);
+      }
     }
 
     _isRefreshing = true;
+    _refreshTokenCompleter = Completer<bool>();
 
     try {
-      final refreshed = await _refreshToken();
+      final refreshed = await _performRefreshToken();
+
+      _refreshTokenCompleter?.complete(refreshed);
 
       if (refreshed) {
-        final response = await _retryRequest(requestOptions);
-        handler.resolve(response);
-
-        await _processPendingRequests();
+        return _retryRequest(error.requestOptions, handler);
       } else {
-        handler.next(error);
-        _rejectPendingRequests(error);
+        _handleSessionExpired();
+        return handler.reject(error);
       }
     } catch (e) {
       log('Error handling unauthorized requests: $e');
-      handler.next(error);
-      _rejectPendingRequests(error);
+      if (_refreshTokenCompleter?.isCompleted == false) {
+        _refreshTokenCompleter?.complete(false);
+      }
+      return handler.next(error);
     } finally {
       _isRefreshing = false;
-      _pendingRequests.clear();
+      _refreshTokenCompleter = null;
     }
   }
 
-  Future<bool> _refreshToken() async {
+  Future<void> _retryRequest(
+    RequestOptions requestOptions,
+    ErrorInterceptorHandler handler,
+  ) async {
+    try {
+      final newAccessToken = await SecureStorageService.getAccessToken();
+
+      final options = Options(
+        method: requestOptions.method,
+        headers: {
+          ...requestOptions.headers,
+          'Authorization': 'Bearer $newAccessToken',
+        },
+      );
+      final response = await dio.fetch(
+        requestOptions.copyWith(headers: options.headers),
+      );
+
+      return handler.resolve(response);
+    } catch (e) {
+      return handler.reject(
+        DioException(
+          requestOptions: requestOptions,
+          error: e,
+          message: 'Retry failed',
+        ),
+      );
+    }
+  }
+
+  Future<bool> _performRefreshToken() async {
     try {
       final refreshToken = await SecureStorageService.getRefreshToken();
-
       if (refreshToken == null) return false;
 
-      final response = await Dio().post(
+      final tokenDio = Dio(
+        BaseOptions(
+          baseUrl: ApiEndPoints.baseUrl,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          validateStatus: (status) => status != null && status < 500,
+        ),
+      );
+
+      final response = await tokenDio.post(
         ApiEndPoints.refreshToken,
-        options: Options(headers: {'Authorization': 'Bearer $refreshToken'}),
+        data: {'refresh_token': refreshToken},
       );
-      var result = ApiResponse.fromJson(
-        response.data,
-        (json) => LoginData.fromJson(json as Map<String, dynamic>),
-      );
-      final successData = result as LoginSuccess;
 
-      await SecureStorageService.clearAllTokens();
+      if (response.statusCode == 200) {
+        var result = ApiResponse.fromJson(
+          response.data,
+          (json) => LoginSuccess.fromJson(json as Map<String, dynamic>),
+        );
 
-      await SecureStorageService.saveTokens(
-        accessToken: successData.tokenModel.accessToken,
-        refreshToken: successData.tokenModel.refreshToken,
-      );
-      return true;
+        SecureStorageService.clearAllTokens();
+        final successData = result.data as LoginSuccess;
+
+        SecureStorageService.saveTokens(
+          accessToken: successData.tokenModel.accessToken,
+          refreshToken: successData.tokenModel.refreshToken,
+        );
+
+        return true;
+      } else if (response.statusCode == 401) {
+        log('Refresh Token is expired or invalid. User must log in again.');
+        return false;
+      }
+
+      return false;
     } catch (e) {
       log('Exception in refresh token: $e');
-      _handleRefreshFailure();
       return false;
     }
   }
 
-  Future<Response<dynamic>> _retryRequest(RequestOptions requestOptions) async {
-    final newAccessToken = await SecureStorageService.getAccessToken();
-    final options = Options(
-      method: requestOptions.method,
-      headers: {
-        ...requestOptions.headers,
-        'Authorization': 'Bearer $newAccessToken',
-      },
-    );
-
-    switch (requestOptions.method.toUpperCase()) {
-      case 'GET':
-        return await dio.get(
-          requestOptions.path,
-          queryParameters: requestOptions.queryParameters,
-          options: options,
-        );
-      case 'POST':
-        return await dio.post(
-          requestOptions.path,
-          data: requestOptions.data,
-          queryParameters: requestOptions.queryParameters,
-          options: options,
-        );
-      case 'PUT':
-        return await dio.put(
-          requestOptions.path,
-          data: requestOptions.data,
-          queryParameters: requestOptions.queryParameters,
-          options: options,
-        );
-      case 'DELETE':
-        return await dio.delete(
-          requestOptions.path,
-          data: requestOptions.data,
-          queryParameters: requestOptions.queryParameters,
-          options: options,
-        );
-      case 'PATCH':
-        return await dio.patch(
-          requestOptions.path,
-          data: requestOptions.data,
-          queryParameters: requestOptions.queryParameters,
-          options: options,
-        );
-      default:
-        throw DioException(
-          requestOptions: requestOptions,
-          message: 'Unsupported HTTP method: ${requestOptions.method}',
-        );
-    }
-  }
-
-  Future<void> _processPendingRequests() async {
-    final requests = List<RequestOptions>.from(_pendingRequests);
-    _pendingRequests.clear();
-
-    for (final request in requests) {
-      try {
-        await _retryRequest(request);
-      } catch (e) {
-        log('Error processing pending requests: $e');
-      }
-    }
-  }
-
-  void _rejectPendingRequests(DioException originalError) {
-    _pendingRequests.clear();
-  }
-
-  Future<void> _handleRefreshFailure() async {
+  Future<void> _handleSessionExpired() async {
     await SecureStorageService.clearAllTokens();
     AppSnackBar.session(AppLocalizations().sessionExpired);
-
     Future.delayed(
-      AppConstantManager.kTransitionDuration,
+      AppConstantManager.sessionExpire,
       () => AppNavigator.pushNamedAndRemoveUntil(AppRoutePaths.login),
     );
   }

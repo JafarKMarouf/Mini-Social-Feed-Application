@@ -15,6 +15,9 @@ import 'package:mini_social_feed/features/auth/presentation/cubits/register_cubi
 import 'package:mini_social_feed/features/intro/presentation/cubit/splash_cubit.dart';
 import 'package:mini_social_feed/features/posts/data/data_source/post_remote_data_source.dart';
 import 'package:mini_social_feed/features/posts/data/repositories/post_repository.dart';
+import 'package:mini_social_feed/features/posts/presentation/cubit/create_post_cubit/create_post_cubit.dart';
+import 'package:mini_social_feed/features/posts/presentation/cubit/delete_post_cubit/delete_post_cubit.dart';
+import 'package:mini_social_feed/features/posts/presentation/cubit/edit_post_cubit/edit_post_cubit.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/post_list_cubit/post_list_cubit.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/show_post_cubit/show_post_cubit.dart';
 
@@ -98,4 +101,13 @@ void _registerPostDependencies() {
 
   /// fetch specific post cubit
   getIt.registerFactory(() => ShowPostCubit());
+
+  /// create post cubit
+  getIt.registerFactory(() => CreatePostCubit());
+
+  /// edit post cubit
+  getIt.registerFactory(() => EditPostCubit());
+
+  /// delete post cubit
+  getIt.registerFactory(() => DeletePostCubit());
 }

@@ -46,12 +46,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "connectionTimeout": MessageLookupByLibrary.simpleMessage(
       "Connection timeout with the server.",
     ),
+    "copyLink": MessageLookupByLibrary.simpleMessage("Copy Link"),
     "dataProcessingError": MessageLookupByLibrary.simpleMessage(
       "An error occurred while processing data from the server. Please try again later.",
+    ),
+    "deletePost": MessageLookupByLibrary.simpleMessage("Delete post"),
+    "deletePostConfirm": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to delete this post?",
     ),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account?  ",
     ),
+    "editPost": MessageLookupByLibrary.simpleMessage("Edit post"),
     "emailRequired": MessageLookupByLibrary.simpleMessage(
       "This email is required",
     ),

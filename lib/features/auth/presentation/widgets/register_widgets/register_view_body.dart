@@ -56,7 +56,7 @@ class RegisterViewBody extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: AppWidthManager.w4,
-                      vertical: AppHeightManager.h5,
+                      vertical: AppHeightManager.h3,
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

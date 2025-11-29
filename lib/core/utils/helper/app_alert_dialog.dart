@@ -10,6 +10,7 @@ Widget appAlertDialog(
   required String subTitle,
   required void Function()? onPressed,
   required IconData icon,
+  Color? color,
 }) {
   final TextDirection direction = Directionality.of(context);
   final isRtl = direction == TextDirection.rtl;
@@ -29,7 +30,7 @@ Widget appAlertDialog(
         const SizedBox(width: 12),
         RotatedBox(
           quarterTurns: quarterTurns,
-          child: Icon(icon, color: AppColorManager.primary, size: 28),
+          child: Icon(icon, color: color ?? AppColorManager.primary, size: 28),
         ),
       ],
     ),
@@ -52,7 +53,7 @@ Widget appAlertDialog(
       ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColorManager.primary,
+          backgroundColor: color ?? AppColorManager.primary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

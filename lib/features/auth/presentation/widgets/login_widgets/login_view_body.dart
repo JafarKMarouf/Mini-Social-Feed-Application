@@ -57,7 +57,7 @@ class LoginViewBody extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: AppWidthManager.w4,
-                      vertical: AppHeightManager.h5,
+                      vertical: AppHeightManager.h3,
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -119,9 +119,9 @@ class LoginViewBody extends StatelessWidget {
                               child: GestureDetector(
                                 onTap: () {
                                   _dismissKeyboard(context);
-                                  // AppNavigator.pushNamed(
-                                  //   AppRoutePaths.forgetPassword,
-                                  // );
+                                  AppNavigator.pushNamed(
+                                    AppRoutePaths.forgetPassword,
+                                  );
                                 },
                                 child: AppTextWidget(
                                   text: AppLocalizations.of(

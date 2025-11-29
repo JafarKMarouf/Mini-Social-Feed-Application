@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/app_text_style.dart';
 import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 abstract class AppSnackBar {
   static SnackBar _buildSnackBar({
@@ -103,12 +103,14 @@ abstract class AppSnackBar {
   }
 
   static void session(String message, {String? title}) {
-    Get.snackbar(
-      title ?? '',
-      message,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: AppColorManager.primary,
-      snackStyle: SnackStyle.GROUNDED,
+    showSimpleNotification(
+      Text(message),
+      leading: const Icon(Icons.info_outline, color: Colors.white),
+      subtitle: Text(title ?? 'Session Expired'),
+      background: AppColorManager.primary,
+      duration: const Duration(seconds: 4),
+      slideDismissDirection: DismissDirection.horizontal,
+      position: NotificationPosition.bottom,
     );
   }
 }

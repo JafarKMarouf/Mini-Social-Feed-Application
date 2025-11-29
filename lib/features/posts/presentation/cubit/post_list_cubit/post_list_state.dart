@@ -1,27 +1,48 @@
 part of 'post_list_cubit.dart';
 
-sealed class PostListState {}
+abstract class PostListState extends Equatable {
+  const PostListState();
 
-final class PostListInitial extends PostListState {}
-
-final class PostListLoading extends PostListState {}
-
-final class PostListPaginationLoading extends PostListState {}
-
-final class PostListFailure extends PostListState {
-  final String errMsg;
-
-  PostListFailure({required this.errMsg});
+  @override
+  List<Object> get props => [];
 }
 
-final class PostListPaginationFailure extends PostListState {
+class PostListInitial extends PostListState {}
+
+class PostListLoading extends PostListState {}
+
+class PostListFailure extends PostListState {
   final String errMsg;
 
-  PostListPaginationFailure({required this.errMsg});
+  const PostListFailure({required this.errMsg});
+
+  @override
+  List<Object> get props => [errMsg];
 }
 
-final class PostListSuccess extends PostListState {
-  final PostListModel posts;
+class PostListSuccess extends PostListState {
+  final List<Post> posts;
+  final bool isLoadingMore;
+  final bool hasReachedMax;
 
-  PostListSuccess({required this.posts});
+  const PostListSuccess({
+    required this.posts,
+    this.isLoadingMore = false,
+    this.hasReachedMax = false,
+  });
+
+  PostListSuccess copyWith({
+    List<Post>? posts,
+    bool? isLoadingMore,
+    bool? hasReachedMax,
+  }) {
+    return PostListSuccess(
+      posts: posts ?? this.posts,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+    );
+  }
+
+  @override
+  List<Object> get props => [posts, isLoadingMore, hasReachedMax];
 }

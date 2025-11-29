@@ -588,6 +588,31 @@ class AppLocalizations {
   String get cancel {
     return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
+
+  /// `Edit post`
+  String get editPost {
+    return Intl.message('Edit post', name: 'editPost', desc: '', args: []);
+  }
+
+  /// `Delete post`
+  String get deletePost {
+    return Intl.message('Delete post', name: 'deletePost', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to delete this post?`
+  String get deletePostConfirm {
+    return Intl.message(
+      'Are you sure you want to delete this post?',
+      name: 'deletePostConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy Link`
+  String get copyLink {
+    return Intl.message('Copy Link', name: 'copyLink', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
