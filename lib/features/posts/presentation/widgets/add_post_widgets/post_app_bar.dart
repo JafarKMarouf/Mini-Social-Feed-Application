@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_social_feed/core/l10n/l10n.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/app_text_style.dart';
 import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
@@ -25,9 +26,9 @@ class PostAppBar extends StatelessWidget {
       leading: Center(
         child: TextButton(
           onPressed: discard,
-          child: const Text(
-            'Discard',
-            style: TextStyle(
+          child: Text(
+            AppLocalizations().discard,
+            style: const TextStyle(
               color: Colors.blueAccent,
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -37,12 +38,14 @@ class PostAppBar extends StatelessWidget {
       ),
       title: AppTextWidget(
         text: title,
-        style: AppTextStyle.styleUrbanistBold22(context).copyWith(color: AppColorManager.white),
+        style: AppTextStyle.styleUrbanistBold22(
+          context,
+        ).copyWith(color: AppColorManager.white),
       ),
       centerTitle: true,
       actions: [
         Padding(
-          padding: const EdgeInsets.only(right: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Center(
             child: ElevatedButton(
               onPressed: publishPost,
@@ -58,9 +61,9 @@ class PostAppBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              child: const Text(
-                'Publish',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              child: Text(
+                AppLocalizations().publish,
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
           ),

@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "EditPost": MessageLookupByLibrary.simpleMessage("Edit Post"),
     "aboutApp": MessageLookupByLibrary.simpleMessage("About App"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account?  ",
@@ -39,6 +40,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "badRequest": MessageLookupByLibrary.simpleMessage(
       "Bad request. Please check the data submitted.",
     ),
+    "canNotOpenDoc": MessageLookupByLibrary.simpleMessage(
+      "Could not open document",
+    ),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "changeLanguage": MessageLookupByLibrary.simpleMessage("Change Language"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
@@ -46,12 +50,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "connectionTimeout": MessageLookupByLibrary.simpleMessage(
       "Connection timeout with the server.",
     ),
+    "createPost": MessageLookupByLibrary.simpleMessage("Create Post"),
     "dataProcessingError": MessageLookupByLibrary.simpleMessage(
       "An error occurred while processing data from the server. Please try again later.",
     ),
     "deletePost": MessageLookupByLibrary.simpleMessage("Delete post"),
     "deletePostConfirm": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this post?",
+    ),
+    "discard": MessageLookupByLibrary.simpleMessage("Discard"),
+    "discardConfirmation": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to discard changes?",
     ),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account?  ",
@@ -65,6 +74,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterPassword": MessageLookupByLibrary.simpleMessage(
       "Enter your password",
     ),
+    "existingMedia": MessageLookupByLibrary.simpleMessage("Existing Media"),
+    "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+    "exitWithoutSave": MessageLookupByLibrary.simpleMessage(
+      "you have changes not saved, are you sure to exit?",
+    ),
     "explore": MessageLookupByLibrary.simpleMessage("Explore"),
     "forbidden": MessageLookupByLibrary.simpleMessage(
       "Forbidden access. You do not have permission.",
@@ -72,6 +86,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
     "gatewayTimeout": MessageLookupByLibrary.simpleMessage("Gateway timeout."),
     "goodMorning": MessageLookupByLibrary.simpleMessage("Good Morning"),
+    "hintContentPost": MessageLookupByLibrary.simpleMessage(
+      "What\'s on your mind?",
+    ),
+    "hintTitlePost": MessageLookupByLibrary.simpleMessage("Post title"),
     "internalServerError": MessageLookupByLibrary.simpleMessage(
       "Internal server error.",
     ),
@@ -100,9 +118,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "nameRequired": MessageLookupByLibrary.simpleMessage(
       "This name is required",
     ),
+    "newMedia": MessageLookupByLibrary.simpleMessage("New Media"),
     "noInternetConnection": MessageLookupByLibrary.simpleMessage(
       "No internet connection.",
     ),
+    "noResult": MessageLookupByLibrary.simpleMessage("No results found"),
     "notFound": MessageLookupByLibrary.simpleMessage(
       "The page or service was not found.",
     ),
@@ -125,6 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "This password is required",
     ),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "publish": MessageLookupByLibrary.simpleMessage("publish"),
     "receiveTimeout": MessageLookupByLibrary.simpleMessage(
       "Response reception timed out from the server.",
     ),
@@ -135,6 +156,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "requestErrorWithCode": m0,
     "requestTimeout": MessageLookupByLibrary.simpleMessage(
       "The request timed out.",
+    ),
+    "requiredContentPost": MessageLookupByLibrary.simpleMessage(
+      "Content is required",
+    ),
+    "requiredTitlePost": MessageLookupByLibrary.simpleMessage(
+      "Title is required",
     ),
     "searchPosts": MessageLookupByLibrary.simpleMessage("Search Posts"),
     "sendTimeout": MessageLookupByLibrary.simpleMessage(
@@ -147,9 +174,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "sessionExpired": MessageLookupByLibrary.simpleMessage(
       "Session validity has ended. You need to log in again.",
     ),
+    "successCreatePostMessage": MessageLookupByLibrary.simpleMessage(
+      "Publish post success",
+    ),
+    "successEditPostMessage": MessageLookupByLibrary.simpleMessage(
+      "Edit post success",
+    ),
     "tooManyRequests": MessageLookupByLibrary.simpleMessage(
       "Request limit exceeded. Please try again later.",
     ),
+    "typeToSearch": MessageLookupByLibrary.simpleMessage("Type to search"),
     "unauthorized": MessageLookupByLibrary.simpleMessage(
       "Unauthorized access.",
     ),
@@ -163,6 +197,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "valEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid email address",
     ),
+    "wantExit": MessageLookupByLibrary.simpleMessage("Do you want to exit?"),
     "welcomeLogin": MessageLookupByLibrary.simpleMessage(
       "Welcome back! Glad to see you, Again!",
     ),

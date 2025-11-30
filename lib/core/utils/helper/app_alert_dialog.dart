@@ -13,14 +13,11 @@ Widget appAlertDialog(
   required IconData icon,
   Color? color,
 }) {
-  final TextDirection direction = Directionality.of(context);
-  final isRtl = direction == TextDirection.rtl;
-  final int quarterTurns = isRtl ? 2 : 0;
   return AlertDialog(
     backgroundColor: AppColorManager.white,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     title: Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         AppTextWidget(
           text: title,

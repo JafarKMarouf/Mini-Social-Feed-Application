@@ -1,9 +1,9 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_social_feed/core/l10n/l10n.dart';
 import 'package:mini_social_feed/core/routes/app_navigator.dart';
 import 'package:mini_social_feed/core/routes/app_router_constants.dart';
 import 'package:mini_social_feed/core/services/media_service.dart';
@@ -73,8 +73,8 @@ class _EditPostViewState extends State<EditPostView> {
         barrierDismissible: false,
         builder: (contextBuilder) => appAlertDialog(
           context,
-          title: 'Discard',
-          subTitle: 'Are you sure to discard changes',
+          title: AppLocalizations().discard,
+          subTitle: AppLocalizations().discardConfirmation,
           onPressed: () {
             context.read<EditPostCubit>().clearForm();
             setState(() {
@@ -106,7 +106,6 @@ class _EditPostViewState extends State<EditPostView> {
       }
 
       var request = cubit.createEditRequest();
-      log('-----------request:${request.toJson()}');
       cubit.editPost(request: request);
     } else {
       setState(() {
@@ -118,7 +117,7 @@ class _EditPostViewState extends State<EditPostView> {
   void _handleStateChanges(BuildContext context, EditPostState state) {
     if (state is EditPostSuccess) {
       _selectedFiles.clear();
-      AppSnackBar.info(context, 'Edit post success');
+      AppSnackBar.info(context, AppLocalizations().successEditPostMessage);
       AppNavigator.pushReplacementNamed(AppRoutePaths.home);
     }
     if (state is EditPostFailure) {
@@ -175,7 +174,7 @@ class _EditPostViewState extends State<EditPostView> {
                     slivers: [
                       PostAppBar(
                         discard: () => _discardChanges(),
-                        title: 'Edit',
+                        title: AppLocalizations().editPost,
                         publishPost: () => _onPublishPressed(context),
                       ),
                       SliverToBoxAdapter(
@@ -197,9 +196,9 @@ class _EditPostViewState extends State<EditPostView> {
                                     const SizedBox(height: 20),
 
                                     if (cubit.existingMedia.isNotEmpty) ...[
-                                      const Text(
-                                        'Existing Media',
-                                        style: TextStyle(
+                                      Text(
+                                        AppLocalizations().existingMedia,
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: AppColorManager.white,
                                         ),
@@ -217,9 +216,9 @@ class _EditPostViewState extends State<EditPostView> {
                                     ],
 
                                     if (_selectedFiles.isNotEmpty) ...[
-                                      const Text(
-                                        'New Media',
-                                        style: TextStyle(
+                                      Text(
+                                        AppLocalizations().newMedia,
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: AppColorManager.white,
                                         ),

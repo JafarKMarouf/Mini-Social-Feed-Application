@@ -15,6 +15,13 @@ class FeedsHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
 
+          AppTextWidget(
+            text: AppLocalizations().goodMorning,
+            style: AppTextStyle.styleUrbanistBold26(context).copyWith(
+              color: AppColorManager.inputFillColor,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -39,13 +46,7 @@ class FeedsHeader extends StatelessWidget {
               ],
             ),
           ),
-          AppTextWidget(
-            text: AppLocalizations().goodMorning,
-            style: AppTextStyle.styleUrbanistBold26(context).copyWith(
-              color: AppColorManager.inputFillColor,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
+
         ],
       ),
     );

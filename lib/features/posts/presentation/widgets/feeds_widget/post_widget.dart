@@ -55,7 +55,7 @@ class PostWidget extends StatelessWidget {
                   : PostMediaSlider(mediaList: post.media!),
             ),
 
-          SizedBox(height: AppHeightManager.h2),
+          SizedBox(height: AppHeightManager.h3),
 
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -633,6 +633,166 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Publish post success`
+  String get successCreatePostMessage {
+    return Intl.message(
+      'Publish post success',
+      name: 'successCreatePostMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit post success`
+  String get successEditPostMessage {
+    return Intl.message(
+      'Edit post success',
+      name: 'successEditPostMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Post`
+  String get createPost {
+    return Intl.message('Create Post', name: 'createPost', desc: '', args: []);
+  }
+
+  /// `Edit Post`
+  String get EditPost {
+    return Intl.message('Edit Post', name: 'EditPost', desc: '', args: []);
+  }
+
+  /// `Existing Media`
+  String get existingMedia {
+    return Intl.message(
+      'Existing Media',
+      name: 'existingMedia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Media`
+  String get newMedia {
+    return Intl.message('New Media', name: 'newMedia', desc: '', args: []);
+  }
+
+  /// `Discard`
+  String get discard {
+    return Intl.message('Discard', name: 'discard', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to discard changes?`
+  String get discardConfirmation {
+    return Intl.message(
+      'Are you sure you want to discard changes?',
+      name: 'discardConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `publish`
+  String get publish {
+    return Intl.message('publish', name: 'publish', desc: '', args: []);
+  }
+
+  /// `Do you want to exit?`
+  String get wantExit {
+    return Intl.message(
+      'Do you want to exit?',
+      name: 'wantExit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `you have changes not saved, are you sure to exit?`
+  String get exitWithoutSave {
+    return Intl.message(
+      'you have changes not saved, are you sure to exit?',
+      name: 'exitWithoutSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exit`
+  String get exit {
+    return Intl.message('Exit', name: 'exit', desc: '', args: []);
+  }
+
+  /// `Post title`
+  String get hintTitlePost {
+    return Intl.message(
+      'Post title',
+      name: 'hintTitlePost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's on your mind?`
+  String get hintContentPost {
+    return Intl.message(
+      'What\'s on your mind?',
+      name: 'hintContentPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title is required`
+  String get requiredTitlePost {
+    return Intl.message(
+      'Title is required',
+      name: 'requiredTitlePost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Content is required`
+  String get requiredContentPost {
+    return Intl.message(
+      'Content is required',
+      name: 'requiredContentPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No results found`
+  String get noResult {
+    return Intl.message(
+      'No results found',
+      name: 'noResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type to search`
+  String get typeToSearch {
+    return Intl.message(
+      'Type to search',
+      name: 'typeToSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not open document`
+  String get canNotOpenDoc {
+    return Intl.message(
+      'Could not open document',
+      name: 'canNotOpenDoc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

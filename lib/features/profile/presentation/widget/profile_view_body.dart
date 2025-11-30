@@ -16,10 +16,6 @@ class ProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextDirection direction = Directionality.of(context);
-    final isRtl = direction == TextDirection.rtl;
-    final int quarterTurns = isRtl ? 2 : 0;
-
     final locale = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.only(

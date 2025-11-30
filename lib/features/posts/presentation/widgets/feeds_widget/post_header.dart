@@ -36,6 +36,7 @@ class PostHeader extends StatelessWidget {
       ),
     );
   }
+
   Future<void> _performDeletePost(BuildContext context) async {
     await context.read<DeletePostCubit>().deletePost(postId: post.id!);
   }

@@ -68,5 +68,26 @@
     "deletePostConfirm": "Are you sure you want to delete this post?",
     "goodMorning": "Good Morning",
     "explore": "Explore",
-    "searchPosts": "Search Posts"
+    "searchPosts": "Search Posts",
+    "successCreatePostMessage": "Publish post success",
+    "successEditPostMessage": "Edit post success",
+    "createPost": "Create Post",
+    "EditPost": "Edit Post",
+    "existingMedia": "Existing Media",
+    "newMedia": "New Media",
+    "discard": "Discard",
+    "discardConfirmation": "Are you sure you want to discard changes?",
+    "publish": "publish",
+
+    "wantExit":"Do you want to exit?",
+    "exitWithoutSave": "you have changes not saved, are you sure to exit?",
+    "exit": "Exit",
+
+    "hintTitlePost": "Post title",
+    "hintContentPost": "What's on your mind?",
+    "requiredTitlePost": "Title is required",
+    "requiredContentPost": "Content is required",
+    "noResult": "No results found",
+    "typeToSearch": "Type to search",
+    "canNotOpenDoc": "Could not open document"
 }

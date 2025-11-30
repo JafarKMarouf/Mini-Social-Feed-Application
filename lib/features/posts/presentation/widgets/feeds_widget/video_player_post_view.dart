@@ -84,15 +84,19 @@ class _VideoPlayerPostViewState extends State<VideoPlayerPostView> {
                   : _controller.play();
             });
           },
-          child: SizedBox(
-            width: double.infinity,
+          child: AspectRatio(
+            aspectRatio: _controller.value.aspectRatio,
+            // Calculates height automatically
             child: Stack(
               alignment: Alignment.center,
               children: [
                 VideoPlayer(_controller),
+
+                // Overlay Play Button
                 if (!_isPlaying && !_controller.value.isBuffering)
                   Container(
-                    color: AppColorManager.dark,
+                    color: Colors.black26,
+                    // Darken background slightly when paused
                     alignment: Alignment.center,
                     child: const Icon(
                       Icons.play_circle_fill,
@@ -100,6 +104,8 @@ class _VideoPlayerPostViewState extends State<VideoPlayerPostView> {
                       size: 60.0,
                     ),
                   ),
+
+                // Loading Indicator
                 if (_controller.value.isBuffering)
                   const CircularProgressIndicator(
                     color: AppColorManager.primary,
@@ -107,6 +113,29 @@ class _VideoPlayerPostViewState extends State<VideoPlayerPostView> {
               ],
             ),
           ),
+          // child: SizedBox(
+          //   width: double.infinity,
+          //   child: Stack(
+          //     alignment: Alignment.center,
+          //     children: [
+          //       VideoPlayer(_controller),
+          //       if (!_isPlaying && !_controller.value.isBuffering)
+          //         Container(
+          //           color: AppColorManager.dark,
+          //           alignment: Alignment.center,
+          //           child: const Icon(
+          //             Icons.play_circle_fill,
+          //             color: Colors.white,
+          //             size: 60.0,
+          //           ),
+          //         ),
+          //       if (_controller.value.isBuffering)
+          //         const CircularProgressIndicator(
+          //           color: AppColorManager.primary,
+          //         ),
+          //     ],
+          //   ),
+          // ),
         ),
       );
     } else {

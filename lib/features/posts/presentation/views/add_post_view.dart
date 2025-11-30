@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_social_feed/core/l10n/l10n.dart';
 import 'package:mini_social_feed/core/routes/app_navigator.dart';
 import 'package:mini_social_feed/core/routes/app_router_constants.dart';
 import 'package:mini_social_feed/core/services/media_service.dart';
@@ -69,8 +70,8 @@ class _AddPostViewState extends State<AddPostView> {
         barrierDismissible: false,
         builder: (contextBuilder) => appAlertDialog(
           context,
-          title: 'Discard',
-          subTitle: 'Are you sure to discard changes',
+          title: AppLocalizations().discard,
+          subTitle: AppLocalizations().discardConfirmation,
           onPressed: () {
             context.read<CreatePostCubit>().clearForm();
             setState(() {
@@ -113,7 +114,7 @@ class _AddPostViewState extends State<AddPostView> {
   void _handleStateChanges(BuildContext context, CreatePostState state) {
     if (state is CreatePostSuccess) {
       _selectedFiles.clear();
-      AppSnackBar.info(context, 'Publish post success');
+      AppSnackBar.info(context, AppLocalizations().successCreatePostMessage);
       AppNavigator.pushReplacementNamed(AppRoutePaths.home);
     }
     if (state is CreatePostFailure) {
@@ -145,7 +146,7 @@ class _AddPostViewState extends State<AddPostView> {
                 slivers: [
                   PostAppBar(
                     discard: () => _discardChanges(),
-                    title: 'Create',
+                    title: AppLocalizations().createPost,
                     publishPost: () => _onPublishPressed(context),
                   ),
                   SliverToBoxAdapter(

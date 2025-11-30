@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_social_feed/core/l10n/l10n.dart';
 import 'package:mini_social_feed/core/routes/app_navigator.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/font_manager.dart';
@@ -19,7 +20,7 @@ Future<bool> showConfirmExitDialog(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               AppTextWidget(
-                text: 'هل تريد الخروج؟',
+                text: AppLocalizations().wantExit,
                 fontSize: FontSizeManager.fs17,
                 fontWeight: FontWeight.bold,
                 color: AppColorManager.dark,
@@ -33,7 +34,7 @@ Future<bool> showConfirmExitDialog(
             ],
           ),
           content: AppTextWidget(
-            text: 'لديك تغييرات غير محفوظة. هل تريد الخروج بدون حفظ؟',
+            text: AppLocalizations().exitWithoutSave,
             fontSize: FontSizeManager.fs15,
             color: AppColorManager.dark,
             maxLines: 2,
@@ -43,7 +44,7 @@ Future<bool> showConfirmExitDialog(
             TextButton(
               onPressed: () => AppNavigator.pop(isRoot: false),
               child: AppTextWidget(
-                text: 'إلغاء',
+                text: AppLocalizations().cancel,
                 fontSize: FontSizeManager.fs15,
                 fontWeight: FontWeight.w500,
                 color: AppColorManager.dark,
@@ -58,7 +59,7 @@ Future<bool> showConfirmExitDialog(
                 ),
               ),
               child: AppTextWidget(
-                text: 'خروج',
+                text: AppLocalizations().exit,
                 fontSize: FontSizeManager.fs15,
                 color: AppColorManager.white,
               ),

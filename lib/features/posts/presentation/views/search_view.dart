@@ -113,6 +113,7 @@ class SearchViewState extends State<SearchView> {
                       onChanged: _onSearchChanged,
                       fillColor: AppColorManager.dark.withOpacity(0.5),
                       borderRadius: 16,
+                      maxLines: 1,
                       borderColor: Colors.white38,
                       hintText: '${AppLocalizations().searchPosts}...',
                       hintStyle: TextStyle(color: Colors.grey[600]),
@@ -207,7 +208,7 @@ class SearchViewState extends State<SearchView> {
             Icon(Icons.search, size: 80, color: Colors.white.withOpacity(0.1)),
             const SizedBox(height: 10),
             Text(
-              'Type to search',
+              AppLocalizations().typeToSearch,
               style: TextStyle(color: Colors.grey[600], fontSize: 16),
             ),
           ],
@@ -230,7 +231,7 @@ class SearchViewState extends State<SearchView> {
             ),
             const SizedBox(height: 10),
             Text(
-              'No results found',
+              AppLocalizations().noResult,
               style: TextStyle(color: Colors.grey[600], fontSize: 16),
             ),
           ],

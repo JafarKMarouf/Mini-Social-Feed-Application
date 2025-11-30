@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mini_social_feed/core/l10n/l10n.dart';
 import 'package:mini_social_feed/core/utils/helper/validator.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/font_manager.dart';
@@ -32,15 +33,17 @@ class PostInputArea extends StatelessWidget {
             children: [
               TextFormField(
                 controller: cubit.titleController,
-                validator: (value) =>
-                    Validator.required(value, message: 'Title is required'),
+                validator: (value) => Validator.required(
+                  value,
+                  message: AppLocalizations().requiredTitlePost,
+                ),
                 style: AppTextStyle.styleUrbanistBold17(context).copyWith(
                   color: AppColorManager.white,
                   fontSize: FontSizeManager.fs18,
                 ),
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
-                  hintText: 'Title',
+                  hintText: AppLocalizations().hintTitlePost,
                   hintStyle: AppTextStyle.styleUrbanistBold17(context).copyWith(
                     color: AppColorManager.gray,
                     fontSize: FontSizeManager.fs18,
@@ -57,15 +60,17 @@ class PostInputArea extends StatelessWidget {
               TextFormField(
                 controller: cubit.contentController,
                 maxLines: null,
-                validator: (value) =>
-                    Validator.required(value, message: 'Content is required'),
+                validator: (value) => Validator.required(
+                  value,
+                  message: AppLocalizations().requiredContentPost,
+                ),
                 style: AppTextStyle.styleUrbanistSemiBold15(context).copyWith(
                   color: AppColorManager.white,
                   fontSize: FontSizeManager.fs17,
                 ),
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
-                  hintText: "What's on your mind?",
+                  hintText: AppLocalizations().hintContentPost,
                   hintStyle: AppTextStyle.styleUrbanistSemiBold15(context)
                       .copyWith(
                         color: AppColorManager.gray,

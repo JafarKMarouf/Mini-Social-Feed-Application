@@ -31,9 +31,9 @@ class _PostMediaSliderState extends State<PostMediaSlider> {
     switch (media.mediaType) {
       case 'image':
       case 'video':
+      case 'audio':
         return AppHeightManager.h27;
       case 'document':
-      case 'audio':
         return 80.0;
       default:
         return 50.0;

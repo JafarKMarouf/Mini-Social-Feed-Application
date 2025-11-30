@@ -44,7 +44,7 @@ class AppTextFormField extends StatelessWidget {
   final TextStyle? textStyle;
   final bool enableBorder;
   final Color? borderColor;
-
+final int? maxLength;
   final double? width;
   final double? height;
   final EdgeInsetsGeometry? margin;
@@ -55,6 +55,7 @@ class AppTextFormField extends StatelessWidget {
     this.borderRadius,
     this.prefixIconConstraints,
     this.minLines,
+    this.maxLength,
     this.filled,
     this.errorText,
     this.enabled,
@@ -123,6 +124,7 @@ class AppTextFormField extends StatelessWidget {
         initialValue: controller == null ? initialValue : null,
         enabled: enabled,
         expands: expand ?? false,
+        maxLength: maxLength,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 20,

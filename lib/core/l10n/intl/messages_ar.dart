@@ -28,49 +28,66 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "aboutApp": MessageLookupByLibrary.simpleMessage("حول التطبيق"),
+    "EditPost": MessageLookupByLibrary.simpleMessage("تعديل"),
+    "aboutApp": MessageLookupByLibrary.simpleMessage("عن التطبيق"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
-      "هل لديك حساب بالفعل؟  ",
+      "لديك حساب بالفعل؟ ",
     ),
     "badCertificate": MessageLookupByLibrary.simpleMessage(
       "شهادة الأمان غير صالحة.",
     ),
-    "badGateway": MessageLookupByLibrary.simpleMessage("خطأ في بوابة الخادم."),
-    "badRequest": MessageLookupByLibrary.simpleMessage(
-      "طلب غير صحيح - تحقق من البيانات المرسلة.",
+    "badGateway": MessageLookupByLibrary.simpleMessage(
+      "خطأ في البوابة (Bad Gateway).",
     ),
+    "badRequest": MessageLookupByLibrary.simpleMessage(
+      "طلب غير صالح. يرجى التحقق من البيانات المرسلة.",
+    ),
+    "canNotOpenDoc": MessageLookupByLibrary.simpleMessage("تعذر فتح المستند"),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "changeLanguage": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
-    "conflict": MessageLookupByLibrary.simpleMessage("تضارب في البيانات."),
+    "conflict": MessageLookupByLibrary.simpleMessage("حدث تعارض في البيانات."),
     "connectionTimeout": MessageLookupByLibrary.simpleMessage(
-      "انتهت مهلة الاتصال مع الخادم.",
+      "انتهت مهلة الاتصال بالخادم.",
     ),
+    "createPost": MessageLookupByLibrary.simpleMessage("إنشاء منشور"),
     "dataProcessingError": MessageLookupByLibrary.simpleMessage(
-      "حدث خطأ في معالجة البيانات من الخادم. يرجى المحاولة لاحقاً.",
+      "حدث خطأ أثناء معالجة البيانات من الخادم. يرجى المحاولة لاحقًا.",
     ),
     "deletePost": MessageLookupByLibrary.simpleMessage("حذف المنشور"),
     "deletePostConfirm": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد أنك تريد حذف هذا المنشور؟",
     ),
-    "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟  "),
+    "discard": MessageLookupByLibrary.simpleMessage("حذف التغييرات"),
+    "discardConfirmation": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد أنك تريد حذف التغييرات؟",
+    ),
+    "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟ "),
     "editPost": MessageLookupByLibrary.simpleMessage("تعديل المنشور"),
     "emailRequired": MessageLookupByLibrary.simpleMessage(
-      "هذا البريد الإلكتروني مطلوب",
+      "البريد الإلكتروني مطلوب",
     ),
     "enterEmail": MessageLookupByLibrary.simpleMessage("أدخل بريدك الإلكتروني"),
     "enterName": MessageLookupByLibrary.simpleMessage("أدخل اسمك"),
     "enterPassword": MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
+    "existingMedia": MessageLookupByLibrary.simpleMessage("الوسائط الحالية"),
+    "exit": MessageLookupByLibrary.simpleMessage("خروج"),
+    "exitWithoutSave": MessageLookupByLibrary.simpleMessage(
+      "لديك تغييرات غير محفوظة. هل تريد الخروج بدون حفظ؟",
+    ),
+    "explore": MessageLookupByLibrary.simpleMessage("استكشف"),
     "forbidden": MessageLookupByLibrary.simpleMessage(
-      "ممنوع - ليس لديك صلاحية للوصول.",
+      "وصول مرفوض. ليس لديك الصلاحية.",
     ),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "gatewayTimeout": MessageLookupByLibrary.simpleMessage(
-      "انتهت مهلة بوابة الخادم.",
+      "انتهت مهلة البوابة.",
     ),
     "goodMorning": MessageLookupByLibrary.simpleMessage("صباح الخير"),
+    "hintContentPost": MessageLookupByLibrary.simpleMessage("بماذا تفكر؟"),
+    "hintTitlePost": MessageLookupByLibrary.simpleMessage("عنوان المنشور"),
     "internalServerError": MessageLookupByLibrary.simpleMessage(
-      "خطأ في الخادم الداخلي.",
+      "خطأ داخلي في الخادم.",
     ),
     "intro1": MessageLookupByLibrary.simpleMessage(
       "تصفح قائمة متجددة من منشورات متابعيك والملفات الشخصية الجديدة لاكتشافها. التمرير اللانهائي يعني أن الموجز لا ينتهي—ابقَ على اطلاع دائم طوال اليوم.",
@@ -82,20 +99,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "حسابك محمي بواسطة مصادقة قائمة على التوكن. يتعامل نظامنا مع تسجيل الدخول وتسجيل الخروج الآمن والتحديث التلقائي للتوكن في الخلفية، مما يحافظ على جلستك سلسة وآمنة.",
     ),
     "languageCode": MessageLookupByLibrary.simpleMessage("انكليزية"),
-    "loading": MessageLookupByLibrary.simpleMessage("جاري التحميل..."),
+    "loading": MessageLookupByLibrary.simpleMessage("جار التحميل..."),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
-      "هل أنت متأكد من رغبتك في تسجيل الخروج؟",
+      "هل أنت متأكد أنك تريد تسجيل الخروج؟",
     ),
     "myAdsManagement": MessageLookupByLibrary.simpleMessage("إدارة إعلاناتي"),
     "nameMinLength": MessageLookupByLibrary.simpleMessage(
-      "يجب أن يتكون الاسم من حرفين على الأقل",
+      "يجب أن يكون حرفين على الأقل",
     ),
-    "nameRequired": MessageLookupByLibrary.simpleMessage("هذا الاسم مطلوب"),
+    "nameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
+    "newMedia": MessageLookupByLibrary.simpleMessage("الوسائط الجديدة"),
     "noInternetConnection": MessageLookupByLibrary.simpleMessage(
       "لا يوجد اتصال بالإنترنت.",
     ),
+    "noResult": MessageLookupByLibrary.simpleMessage("لا توجد نتائج"),
     "notFound": MessageLookupByLibrary.simpleMessage(
       "الصفحة أو الخدمة غير موجودة.",
     ),
@@ -106,54 +125,70 @@ class MessageLookup extends MessageLookupByLibrary {
       "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
     ),
     "passwordContainSpecialCharacter": MessageLookupByLibrary.simpleMessage(
-      "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل",
+      "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل",
     ),
     "passwordContainUpperCharacter": MessageLookupByLibrary.simpleMessage(
       "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
     ),
     "passwordLength": MessageLookupByLibrary.simpleMessage(
-      "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
+      "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
     ),
     "passwordRequired": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور مطلوبة",
     ),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+    "publish": MessageLookupByLibrary.simpleMessage("نشر"),
     "receiveTimeout": MessageLookupByLibrary.simpleMessage(
-      "انتهت مهلة استقبال البيانات من الخادم.",
+      "انتهت مهلة استلام الرد من الخادم.",
     ),
-    "register": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "register": MessageLookupByLibrary.simpleMessage("تسجيل حساب جديد"),
     "requestCancelled": MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب."),
     "requestErrorWithCode": m0,
     "requestTimeout": MessageLookupByLibrary.simpleMessage("انتهت مهلة الطلب."),
+    "requiredContentPost": MessageLookupByLibrary.simpleMessage(
+      "محتوى المنشور مطلوب",
+    ),
+    "requiredTitlePost": MessageLookupByLibrary.simpleMessage(
+      "عنوان المنشور مطلوب",
+    ),
+    "searchPosts": MessageLookupByLibrary.simpleMessage("بحث في المنشورات"),
     "sendTimeout": MessageLookupByLibrary.simpleMessage(
-      "انتهت مهلة إرسال البيانات إلى الخادم.",
+      "انتهت مهلة الطلب أثناء إرسال البيانات.",
     ),
     "serverErrorWithCode": m1,
     "serviceUnavailable": MessageLookupByLibrary.simpleMessage(
-      "الخدمة غير متاحة حالياً.",
+      "الخدمة غير متوفرة حاليًا.",
     ),
     "sessionExpired": MessageLookupByLibrary.simpleMessage(
-      "صلاحية الجلسة انتهت، تحتاج إلى تسجيل الدخول مجدداً.",
+      "انتهت صلاحية الجلسة. تحتاج إلى تسجيل الدخول مرة أخرى.",
+    ),
+    "successCreatePostMessage": MessageLookupByLibrary.simpleMessage(
+      "تم نشر المنشور بنجاح",
+    ),
+    "successEditPostMessage": MessageLookupByLibrary.simpleMessage(
+      "تم تعديل المنشور بنجاح",
     ),
     "tooManyRequests": MessageLookupByLibrary.simpleMessage(
-      "تم تجاوز حد الطلبات المسموح - حاول لاحقاً.",
+      "تم تجاوز حد الطلبات. يرجى المحاولة لاحقًا.",
     ),
-    "unauthorized": MessageLookupByLibrary.simpleMessage("غير مخول للوصول."),
+    "typeToSearch": MessageLookupByLibrary.simpleMessage("اكتب للبحث"),
+    "unauthorized": MessageLookupByLibrary.simpleMessage("وصول غير مصرح به."),
     "unknownError": MessageLookupByLibrary.simpleMessage(
-      "حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.",
+      "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
     ),
     "unknownErrorCode": m2,
     "unprocessableEntity": MessageLookupByLibrary.simpleMessage(
-      "البيانات المرسلة غير صحيحة/غير قابلة للمعالجة.",
+      "البيانات المرسلة غير صحيحة/غير صالحة.",
     ),
     "valEmail": MessageLookupByLibrary.simpleMessage(
-      "الرجاء إدخال عنوان بريد إلكتروني صحيح",
+      "يرجى إدخال عنوان بريد إلكتروني صالح",
     ),
+    "wantExit": MessageLookupByLibrary.simpleMessage("هل تريد الخروج؟"),
     "welcomeLogin": MessageLookupByLibrary.simpleMessage(
-      "مرحبا بعودتك! سعيدون لرؤيتك مجددا!",
+      "مرحبًا بعودتك! سعداء برؤيتك مجددًا!",
     ),
     "welcomeRegister": MessageLookupByLibrary.simpleMessage(
-      "مرحباً! سجّل لتبدأ",
+      "مرحبًا! سجل لتبدأ",
     ),
   };
 }

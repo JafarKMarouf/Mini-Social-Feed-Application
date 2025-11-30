@@ -9,27 +9,21 @@ import 'package:permission_handler/permission_handler.dart';
 class MediaService {
   Future<PermissionStatus> requestMediaPermission() async {
     if (Platform.isAndroid) {
-      // We need to check the Android SDK version
       final androidInfo = await DeviceInfoPlugin().androidInfo;
 
       if (androidInfo.version.sdkInt <= 32) {
         return await Permission.storage.request();
       } else {
-        // Android 13+ (SDK 33) uses granular permissions (photos, videos)
-        // We request both to ensure we can pick all media types
         Map<Permission, PermissionStatus> statuses = await [
           Permission.photos,
           Permission.videos,
         ].request();
 
-        // Logic to determine overall status:
-        // If either is granted, we can proceed.
         if (statuses[Permission.photos]!.isGranted ||
             statuses[Permission.videos]!.isGranted) {
           return PermissionStatus.granted;
         }
 
-        // If either is permanently denied, we treat it as permanently denied
         if (statuses[Permission.photos]!.isPermanentlyDenied ||
             statuses[Permission.videos]!.isPermanentlyDenied) {
           return PermissionStatus.permanentlyDenied;
@@ -38,8 +32,6 @@ class MediaService {
         return PermissionStatus.denied;
       }
     } else {
-      // iOS
-      // Permission.photos handles the gallery access
       return await Permission.photos.request();
     }
   }
@@ -57,12 +49,11 @@ class MediaService {
   Future<List<PlatformFile>> pickMedia() async {
     final status = await requestMediaPermission();
 
-    // Check for granted or limited (iOS specific limited access)
     if (status.isGranted || status.isLimited) {
       try {
         final result = await FilePicker.platform.pickFiles(
           allowMultiple: true,
-          type: FileType.media, // Allows images and videos
+          type: FileType.media,
         );
 
         if (result != null) {
@@ -72,11 +63,9 @@ class MediaService {
         log('Error picking files: $e');
       }
     } else if (status.isPermanentlyDenied) {
-      // Handle permission permanently denied - guide user to settings
       log('Permission permanently denied. Opening settings.');
       await openAppSettings();
     } else {
-      // Handle permission denied (user clicked 'Deny' but not 'Don't ask again')
       log('Permission denied');
     }
     return [];
@@ -84,23 +73,17 @@ class MediaService {
 
   /// Pick generic documents (PDF, Doc, etc.)
   Future<List<PlatformFile>> pickDocuments() async {
-    // Note: System file pickers (SAF on Android) often don't need explicit
-    // storage permissions for "opening" documents, but it's good practice
-    // to check or handle exceptions. We try picking directly.
     try {
       final result = await FilePicker.platform.pickFiles(
         allowMultiple: true,
-        type: FileType.any, // Allows any file type
+        type: FileType.any,
       );
 
       if (result != null) {
-        // Filter out media types if you strictly want documents only,
-        // or just return everything.
         return result.files;
       }
     } catch (e) {
       log('Error picking documents: $e');
-      // If error is permission related, prompt settings
     }
     return [];
   }
@@ -114,12 +97,10 @@ class MediaService {
         final ImagePicker picker = ImagePicker();
         final XFile? image = await picker.pickImage(
           source: ImageSource.camera,
-          imageQuality: 80, // Optional optimization
+          imageQuality: 80,
         );
 
         if (image != null) {
-          // Convert XFile to PlatformFile
-          // We calculate size manually if needed, or leave at 0 if not critical immediately
           int size = 0;
           try {
             size = await File(image.path).length();
