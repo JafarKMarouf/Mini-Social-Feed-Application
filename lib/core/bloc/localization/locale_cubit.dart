@@ -13,22 +13,26 @@ class LocaleCubit extends Cubit<LocaleState> {
 
   LocaleCubit(this._prefsService) : super(const LocaleState(Locale('en')));
 
-  void toggleLocale() {
+  Future<void> toggleLocale() async {
     final currentIndex = supportedLocales.indexOf(state.locale);
     final nextIndex = (currentIndex + 1) % supportedLocales.length;
     final nextLocale = supportedLocales[nextIndex];
 
-    _setLocale(nextLocale);
+    emit(state.copyWith(isLoading: true));
+
+    await Future.delayed(const Duration(seconds: 3));
+    await _setLocale(nextLocale);
   }
 
   Future<void> _setLocale(Locale newLocale) async {
     if (supportedLocales.contains(newLocale)) {
-      emit(LocaleState(newLocale));
+      emit(LocaleState(newLocale, isLoading: false));
       await _prefsService.set<String>(
         AppConstantManager.localeLanguageCode,
         newLocale.languageCode,
       );
     } else {
+      emit(state.copyWith(isLoading: false));
       debugPrint(
         'Unsupported localization requested: ${newLocale.languageCode}',
       );

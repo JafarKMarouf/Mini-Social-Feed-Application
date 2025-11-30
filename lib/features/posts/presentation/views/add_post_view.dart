@@ -12,7 +12,6 @@ import 'package:mini_social_feed/core/utils/helper/confim_exit_dialog.dart';
 import 'package:mini_social_feed/core/utils/helper/validator.dart';
 import 'package:mini_social_feed/core/utils/widgets/loading/loading_overlay.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/create_post_cubit/create_post_cubit.dart';
-import 'package:mini_social_feed/features/posts/presentation/cubit/post_list_cubit/post_list_cubit.dart';
 import 'package:mini_social_feed/features/posts/presentation/widgets/add_post_widgets/display_media_grid.dart';
 import 'package:mini_social_feed/features/posts/presentation/widgets/add_post_widgets/media_tool_bar.dart';
 import 'package:mini_social_feed/features/posts/presentation/widgets/add_post_widgets/post_app_bar.dart';
@@ -115,7 +114,6 @@ class _AddPostViewState extends State<AddPostView> {
     if (state is CreatePostSuccess) {
       _selectedFiles.clear();
       AppSnackBar.info(context, 'Publish post success');
-      context.read<PostListCubit>().fetchPostList();
       AppNavigator.pushReplacementNamed(AppRoutePaths.home);
     }
     if (state is CreatePostFailure) {

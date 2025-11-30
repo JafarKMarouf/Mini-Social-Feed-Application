@@ -31,7 +31,6 @@ class ProfileViewBody extends StatelessWidget {
         children: [
           const ProfileHeader(),
           SizedBox(height: AppHeightManager.h2),
-
           GestureDetector(
             onTap: () {},
             child: Container(
@@ -43,13 +42,16 @@ class ProfileViewBody extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Icon(Icons.arrow_back, color: Colors.white),
-                  const SizedBox(width: 25),
                   AppTextWidget(
                     text: locale.myAdsManagement,
                     style: AppTextStyle.styleUrbanistBold17(
                       context,
                     ).copyWith(color: AppColorManager.white),
+                  ),
+                  const SizedBox(width: 25),
+                  const Icon(
+                    Icons.arrow_forward_ios_sharp,
+                    color: Colors.white,
                   ),
                 ],
               ),
@@ -93,13 +95,10 @@ class ProfileViewBody extends StatelessWidget {
                 _buildItem(
                   context,
                   title: locale.logout,
-                  icon: RotatedBox(
-                    quarterTurns: quarterTurns,
-                    child: const Icon(
-                      Icons.logout,
-                      color: AppColorManager.primary,
-                      size: 28,
-                    ),
+                  icon: const Icon(
+                    Icons.logout,
+                    color: AppColorManager.primary,
+                    size: 28,
                   ),
                   onTap: () => _showLogoutDialog(context),
                 ),
@@ -140,25 +139,39 @@ class ProfileViewBody extends StatelessWidget {
     Color? color,
     VoidCallback? onTap,
   }) {
-    return Card(
-      color: AppColorManager.inputFillColor,
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: ListTile(
-        onTap: onTap,
-        trailing:
-            icon ?? Icon(iconData, color: color ?? AppColorManager.primary),
-        title: AppTextWidget(
-          textDirection: TextDirection.rtl,
-          text: title,
-          style: AppTextStyle.styleUrbanistBold17(
-            context,
-          ).copyWith(color: AppColorManager.dark),
-        ),
-        leading: const Icon(
-          Icons.arrow_back_ios_new,
-          size: 20,
-          color: AppColorManager.primary,
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        color: AppColorManager.inputFillColor,
+        margin: const EdgeInsets.symmetric(vertical: 6),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  icon ??
+                      Icon(iconData, color: color ?? AppColorManager.primary),
+                  SizedBox(width: AppWidthManager.w2),
+                  AppTextWidget(
+                    textDirection: TextDirection.rtl,
+                    text: title,
+                    style: AppTextStyle.styleUrbanistBold17(
+                      context,
+                    ).copyWith(color: AppColorManager.dark),
+                  ),
+                ],
+              ),
+
+              const Icon(
+                Icons.arrow_forward_ios_sharp,
+                size: 20,
+                color: AppColorManager.primary,
+              ),
+            ],
+          ),
         ),
       ),
     );

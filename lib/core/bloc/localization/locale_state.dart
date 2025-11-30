@@ -2,9 +2,17 @@ part of 'locale_cubit.dart';
 
 final class LocaleState extends Equatable {
   final Locale locale;
+  final bool isLoading;
 
-  const LocaleState(this.locale);
+  const LocaleState(this.locale, {this.isLoading = false});
+
+  LocaleState copyWith({Locale? locale, bool? isLoading}) {
+    return LocaleState(
+      locale ?? this.locale,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
 
   @override
-  List<Object> get props => [locale];
+  List<Object> get props => [locale, isLoading];
 }

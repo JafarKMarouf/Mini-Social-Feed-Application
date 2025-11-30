@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:mini_social_feed/core/constants/api_endpoints.dart';
 import 'package:mini_social_feed/core/network/api_response.dart';
 import 'package:mini_social_feed/core/network/api_service.dart';
@@ -31,10 +29,6 @@ class PostRemoteDataSourceImpl extends PostRemoteDataSource {
   Future<ApiResponse<PostListModel>> fetchListPost({
     FetchPostListRequest? request,
   }) async {
-    log(
-      '-------url---${'${ApiEndPoints.posts}?page=${request?.nextPage}&current_page=${request?.currentPage}&per_page=${request?.perPage}&search=${request?.search}&media_type=${request?.mediaType}'}',
-    );
-
     var data = await getIt<ApiService>().get(
       url:
           '${ApiEndPoints.posts}?page=${request?.nextPage}&current_page=${request?.currentPage}&per_page=${request?.perPage}&search=${request?.search}&media_type=${request?.mediaType}',
@@ -74,16 +68,13 @@ class PostRemoteDataSourceImpl extends PostRemoteDataSource {
       var responseData = response.data;
 
       if (responseData is String) {
-        log('⚠️ [CreatePost] Response is String. Decoding manually...');
         try {
           responseData = jsonDecode(responseData);
         } catch (e) {
-          log('❌ [CreatePost] Failed to decode JSON: $responseData');
           throw const FormatException('Server returned invalid JSON format');
         }
       }
 
-      // Ensure responseData is actually a Map before passing to ApiResponse
       if (responseData is! Map<String, dynamic>) {
         throw FormatException(
           'Expected Map<String, dynamic> but got ${responseData.runtimeType}',
@@ -95,10 +86,6 @@ class PostRemoteDataSourceImpl extends PostRemoteDataSource {
         (json) => Post.fromJson(json as Map<String, dynamic>),
       );
     } catch (e) {
-      log('❌ Exception in createPost: $e');
-      if (e is DioException) {
-        log('Dio Response: ${e.response?.data}');
-      }
       rethrow;
     }
   }
@@ -106,7 +93,6 @@ class PostRemoteDataSourceImpl extends PostRemoteDataSource {
   @override
   Future<ApiResponse<Post>> editPost({required EditPostRequest request}) async {
     final formData = await EditPostRequest.createFormData(request);
-    // log('--------------edit post form data request :${formData.fields}');
     var data = await getIt<ApiService>().put(
       url: '${ApiEndPoints.posts}/${request.id}',
       body: formData,

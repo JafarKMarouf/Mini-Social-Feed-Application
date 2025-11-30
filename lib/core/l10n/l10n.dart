@@ -59,6 +59,16 @@ class AppLocalizations {
     return Intl.message('Arabic', name: 'languageCode', desc: '', args: []);
   }
 
+  /// `Change Language`
+  String get changeLanguage {
+    return Intl.message(
+      'Change Language',
+      name: 'changeLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Dive into a paginated list of posts from everyone you follow and new profiles to discover. Infinite scrolling means the feed never ends—stay updated, all day long.`
   String get intro1 {
     return Intl.message(
@@ -544,16 +554,6 @@ class AppLocalizations {
     );
   }
 
-  /// `Change Language`
-  String get changeLanguage {
-    return Intl.message(
-      'Change Language',
-      name: 'changeLanguage',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `About App`
   String get aboutApp {
     return Intl.message('About App', name: 'aboutApp', desc: '', args: []);
@@ -609,9 +609,29 @@ class AppLocalizations {
     );
   }
 
-  /// `Copy Link`
-  String get copyLink {
-    return Intl.message('Copy Link', name: 'copyLink', desc: '', args: []);
+  /// `Good Morning`
+  String get goodMorning {
+    return Intl.message(
+      'Good Morning',
+      name: 'goodMorning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Explore`
+  String get explore {
+    return Intl.message('Explore', name: 'explore', desc: '', args: []);
+  }
+
+  /// `Search Posts`
+  String get searchPosts {
+    return Intl.message(
+      'Search Posts',
+      name: 'searchPosts',
+      desc: '',
+      args: [],
+    );
   }
 }
 

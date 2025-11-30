@@ -13,6 +13,7 @@ import 'package:mini_social_feed/core/utils/resources/image_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/size_manager.dart';
 import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
 import 'package:mini_social_feed/core/utils/widgets/buttons/app_primary_button.dart';
+import 'package:mini_social_feed/core/utils/widgets/change_lang_loading/change_lang_loading.dart';
 import 'package:mini_social_feed/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
 import 'package:mini_social_feed/features/auth/presentation/widgets/login_widgets/build_login_form.dart';
 
@@ -161,6 +162,7 @@ class LoginViewBody extends StatelessWidget {
                 return buildLoadingOverlay(state is LoginLoadingState);
               },
             ),
+            const ChangeLangLoading(),
           ],
         ),
       ),

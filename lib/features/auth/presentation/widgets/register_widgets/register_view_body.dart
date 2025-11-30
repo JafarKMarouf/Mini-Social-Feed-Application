@@ -13,6 +13,7 @@ import 'package:mini_social_feed/core/utils/resources/image_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/size_manager.dart';
 import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
 import 'package:mini_social_feed/core/utils/widgets/buttons/app_primary_button.dart';
+import 'package:mini_social_feed/core/utils/widgets/change_lang_loading/change_lang_loading.dart';
 import 'package:mini_social_feed/core/utils/widgets/loading/loading_overlay.dart';
 import 'package:mini_social_feed/features/auth/presentation/cubits/register_cubit/register_cubit.dart';
 import 'package:mini_social_feed/features/auth/presentation/widgets/register_widgets/build_register_form.dart';
@@ -139,6 +140,7 @@ class RegisterViewBody extends StatelessWidget {
                 return buildLoadingOverlay(state is RegisterLoadingState);
               },
             ),
+            const ChangeLangLoading(),
           ],
         ),
       ),

@@ -1,10 +1,5 @@
-<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="40" height="40" rx="20" fill="url(#paint0_linear_221_165)"/>
-<path d="M20 14V20M20 20V26M20 20H26M20 20H14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<defs>
-<linearGradient id="paint0_linear_221_165" x1="1.49012e-07" y1="20" x2="41.1356" y2="20" gradientUnits="userSpaceOnUse">
-<stop stop-color="#F72E8E"/>
-<stop offset="1" stop-color="#AC1AF0"/>
-</linearGradient>
-</defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+    <path fill-rule="evenodd"
+        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm.75-10.25v2.5h2.5a.75.75 0 0 1 0 1.5h-2.5v2.5a.75.75 0 0 1-1.5 0v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v-2.5a.75.75 0 0 1 1.5 0Z"
+        clip-rule="evenodd" />
 </svg>

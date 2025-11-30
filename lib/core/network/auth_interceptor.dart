@@ -4,12 +4,10 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:mini_social_feed/core/constants/api_endpoints.dart';
 import 'package:mini_social_feed/core/constants/app_constant_manager.dart';
-import 'package:mini_social_feed/core/l10n/l10n.dart';
 import 'package:mini_social_feed/core/network/api_response.dart';
 import 'package:mini_social_feed/core/routes/app_navigator.dart';
 import 'package:mini_social_feed/core/routes/app_router_constants.dart';
 import 'package:mini_social_feed/core/services/secure_storage_service.dart';
-import 'package:mini_social_feed/core/utils/helper/app_snackbar.dart';
 
 import '../../features/auth/data/models/login_data.dart';
 
@@ -174,7 +172,7 @@ class DioClient {
 
   Future<void> _handleSessionExpired() async {
     await SecureStorageService.clearAllTokens();
-    AppSnackBar.session(AppLocalizations().sessionExpired);
+    // AppSnackBar.session(AppLocalizations().sessionExpired);
     Future.delayed(
       AppConstantManager.sessionExpire,
       () => AppNavigator.pushNamedAndRemoveUntil(AppRoutePaths.login),

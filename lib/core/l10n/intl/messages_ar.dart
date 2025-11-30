@@ -49,7 +49,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "dataProcessingError": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ في معالجة البيانات من الخادم. يرجى المحاولة لاحقاً.",
     ),
+    "deletePost": MessageLookupByLibrary.simpleMessage("حذف المنشور"),
+    "deletePostConfirm": MessageLookupByLibrary.simpleMessage(
+      "هل أنت متأكد أنك تريد حذف هذا المنشور؟",
+    ),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟  "),
+    "editPost": MessageLookupByLibrary.simpleMessage("تعديل المنشور"),
     "emailRequired": MessageLookupByLibrary.simpleMessage(
       "هذا البريد الإلكتروني مطلوب",
     ),
@@ -63,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "gatewayTimeout": MessageLookupByLibrary.simpleMessage(
       "انتهت مهلة بوابة الخادم.",
     ),
+    "goodMorning": MessageLookupByLibrary.simpleMessage("صباح الخير"),
     "internalServerError": MessageLookupByLibrary.simpleMessage(
       "خطأ في الخادم الداخلي.",
     ),

@@ -83,7 +83,7 @@ class _FeedsViewState extends State<FeedsView> {
                       return SliverToBoxAdapter(
                         child: Center(
                           child: AppTextWidget(
-                            text: 'Error: ${state.errMsg}',
+                            text: state.errMsg,
                             style: AppTextStyle.styleUrbanistBold22(
                               context,
                             ).copyWith(color: AppColorManager.white),

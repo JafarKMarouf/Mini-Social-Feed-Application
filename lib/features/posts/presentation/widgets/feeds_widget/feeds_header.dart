@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_social_feed/core/l10n/l10n.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/app_text_style.dart';
 import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
@@ -13,13 +14,7 @@ class FeedsHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          AppTextWidget(
-            text: 'Good Morning, Alex.',
-            style: AppTextStyle.styleUrbanistBold26(context).copyWith(
-              color: AppColorManager.inputFillColor,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
+
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -42,6 +37,13 @@ class FeedsHeader extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+          AppTextWidget(
+            text: AppLocalizations().goodMorning,
+            style: AppTextStyle.styleUrbanistBold26(context).copyWith(
+              color: AppColorManager.inputFillColor,
+              fontWeight: FontWeight.w800,
             ),
           ),
         ],

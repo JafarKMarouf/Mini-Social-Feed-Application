@@ -23,10 +23,12 @@ import 'package:mini_social_feed/features/posts/presentation/cubit/delete_post_c
 import 'package:mini_social_feed/features/posts/presentation/cubit/edit_post_cubit/edit_post_cubit.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/post_list_cubit/post_list_cubit.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/show_post_cubit/show_post_cubit.dart';
-import 'package:mini_social_feed/features/posts/presentation/pages/add_post_view.dart';
-import 'package:mini_social_feed/features/posts/presentation/pages/edit_post_view.dart';
-import 'package:mini_social_feed/features/posts/presentation/pages/feeds_view.dart';
+import 'package:mini_social_feed/features/posts/presentation/views/add_post_view.dart';
+import 'package:mini_social_feed/features/posts/presentation/views/edit_post_view.dart';
+import 'package:mini_social_feed/features/posts/presentation/views/search_view.dart';
 import 'package:mini_social_feed/features/profile/presentation/views/profile_view.dart';
+
+import '../../features/posts/presentation/views/feeds_view.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 final shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -143,25 +145,11 @@ abstract class AppRouter {
                 pageBuilder: (context, state) => buildPageWithTransition(
                   context: context,
                   state: state,
-                  child: const Scaffold(body: Center(child: Text('Chat'))),
-                ),
-              ),
-            ],
-          ),
-
-          StatefulShellBranch(
-            routes: <RouteBase>[
-              GoRoute(
-                path: AppRoutePaths.create,
-                name: AppRouteNames.create,
-                pageBuilder: (context, state) => buildPageWithTransition(
-                  context: context,
-                  state: state,
                   child: BlocProvider(
-                    create: (_) => getIt<CreatePostCubit>(),
+                    create: (_) => getIt<PostListCubit>(),
                     child: const Scaffold(
                       backgroundColor: AppColorManager.background,
-                      body: AddPostView(),
+                      body: SearchView(),
                     ),
                   ),
                 ),
@@ -172,16 +160,25 @@ abstract class AppRouter {
           StatefulShellBranch(
             routes: <RouteBase>[
               GoRoute(
-                path: AppRoutePaths.alert,
-                name: AppRouteNames.alert,
-                pageBuilder: (context, state) => buildPageWithTransition(
-                  context: context,
-                  state: state,
-                  child: const Scaffold(body: Center(child: Text('Alert'))),
-                ),
+                path: AppRoutePaths.create,
+                name: AppRouteNames.create,
+                pageBuilder: (context, state) {
+                  return buildPageWithTransition(
+                    context: context,
+                    state: state,
+                    child: BlocProvider(
+                      create: (_) => getIt<CreatePostCubit>(),
+                      child: const Scaffold(
+                        backgroundColor: AppColorManager.background,
+                        body: AddPostView(),
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
+
           StatefulShellBranch(
             routes: <RouteBase>[
               GoRoute(

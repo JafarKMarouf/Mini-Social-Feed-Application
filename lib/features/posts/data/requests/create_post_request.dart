@@ -31,7 +31,7 @@ class CreatePostRequest {
       for (final file in request.media!) {
         formData.files.add(
           MapEntry(
-            'media',
+            'media[]',
             await MultipartFile.fromFile(
               file.path,
               filename: file.path.split('/').last,

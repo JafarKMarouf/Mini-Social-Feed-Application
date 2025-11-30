@@ -29,10 +29,7 @@ Widget appAlertDialog(
           color: AppColorManager.dark,
         ),
         const SizedBox(width: 12),
-        RotatedBox(
-          quarterTurns: quarterTurns,
-          child: Icon(icon, color: color ?? AppColorManager.primary, size: 28),
-        ),
+        Icon(icon, color: color ?? AppColorManager.primary, size: 28),
       ],
     ),
     content: AppTextWidget(

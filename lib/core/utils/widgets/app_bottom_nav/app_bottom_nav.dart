@@ -180,14 +180,13 @@ class AppBottomNav extends StatelessWidget {
                 ),
                 _buildNavDestination(
                   context,
-                  AppIconManager.chat,
+                  AppIconManager.search,
                   selectedColor: selectedColor,
                   unSelectedColor: unSelectedColor,
                 ),
-                _buildNavDestination(context, AppIconManager.create),
                 _buildNavDestination(
                   context,
-                  AppIconManager.alert,
+                  AppIconManager.create,
                   selectedColor: selectedColor,
                   unSelectedColor: unSelectedColor,
                 ),

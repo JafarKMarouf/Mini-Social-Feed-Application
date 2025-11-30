@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_social_feed/core/routes/app_navigator.dart';
 import 'package:mini_social_feed/core/routes/app_router_constants.dart';
 import 'package:mini_social_feed/core/utils/helper/app_snackbar.dart';
+import 'package:mini_social_feed/core/utils/widgets/change_lang_loading/change_lang_loading.dart';
 import 'package:mini_social_feed/core/utils/widgets/loading/loading_overlay.dart';
 import 'package:mini_social_feed/features/auth/presentation/cubits/logout_cubit/logout_cubit.dart';
 import 'package:mini_social_feed/features/auth/presentation/cubits/profile_cubit/profile_cubit.dart';
@@ -23,7 +24,6 @@ class ProfileView extends StatelessWidget {
             if (state is LogoutFailure) {
               AppSnackBar.error(context, state.errMsg);
             }
-
           },
         ),
         BlocListener<ProfileCubit, ProfileState>(
@@ -35,15 +35,16 @@ class ProfileView extends StatelessWidget {
         ),
       ],
       child: SafeArea(
-        child: BlocBuilder<LogoutCubit, LogoutState>(
-          builder: (context, state) {
-            return Stack(
-              children: [
-                const ProfileViewBody(),
-                buildLoadingOverlay(state is LogoutLoading),
-              ],
-            );
-          },
+        child: Stack(
+          children: [
+            const ProfileViewBody(),
+            BlocBuilder<LogoutCubit, LogoutState>(
+              builder: (context, state) {
+                return buildLoadingOverlay(state is LogoutLoading);
+              },
+            ),
+            const ChangeLangLoading(),
+          ],
         ),
       ),
     );

@@ -41,7 +41,7 @@ class AppTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final bool? filled;
   final FloatingLabelBehavior? floatingLabelBehavior;
-
+  final TextStyle? textStyle;
   final bool enableBorder;
   final Color? borderColor;
 
@@ -87,6 +87,7 @@ class AppTextFormField extends StatelessWidget {
     this.height,
     this.margin,
     this.floatingLabelBehavior,
+    this.textStyle,
   });
 
   InputBorder _buildBorder(Color color) {
@@ -167,12 +168,14 @@ class AppTextFormField extends StatelessWidget {
               ? _buildBorder(borderColor ?? AppColorManager.primary)
               : InputBorder.none,
         ),
-        style: TextStyle(
-          color: AppColorManager.dark,
-          fontSize: FontSizeManager.fs16,
-          fontWeight: FontWeight.w700,
-          fontFamily: FontFamilyManager.urbanist,
-        ),
+        style:
+            textStyle ??
+            TextStyle(
+              color: AppColorManager.dark,
+              fontSize: FontSizeManager.fs16,
+              fontWeight: FontWeight.w700,
+              fontFamily: FontFamilyManager.urbanist,
+            ),
       ),
     );
   }

@@ -2,7 +2,7 @@ class FetchPostListRequest {
   final int? perPage;
   final int? nextPage;
   final int? currentPage;
-  final MediaType? mediaType;
+  final String? mediaType;
   final String? search;
 
   const FetchPostListRequest({
@@ -14,4 +14,18 @@ class FetchPostListRequest {
   });
 }
 
-enum MediaType { image, video, audio, document }
+enum MediaType {
+  image,
+  video,
+  audio,
+  document,
+  pdf,
+  pptx,
+  csv,
+  json,
+  jpg,
+  png,
+  mp4,
+  mp3,
+}
+

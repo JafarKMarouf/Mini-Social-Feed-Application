@@ -46,7 +46,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "connectionTimeout": MessageLookupByLibrary.simpleMessage(
       "Connection timeout with the server.",
     ),
-    "copyLink": MessageLookupByLibrary.simpleMessage("Copy Link"),
     "dataProcessingError": MessageLookupByLibrary.simpleMessage(
       "An error occurred while processing data from the server. Please try again later.",
     ),
@@ -66,11 +65,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterPassword": MessageLookupByLibrary.simpleMessage(
       "Enter your password",
     ),
+    "explore": MessageLookupByLibrary.simpleMessage("Explore"),
     "forbidden": MessageLookupByLibrary.simpleMessage(
       "Forbidden access. You do not have permission.",
     ),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
     "gatewayTimeout": MessageLookupByLibrary.simpleMessage("Gateway timeout."),
+    "goodMorning": MessageLookupByLibrary.simpleMessage("Good Morning"),
     "internalServerError": MessageLookupByLibrary.simpleMessage(
       "Internal server error.",
     ),
@@ -135,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "requestTimeout": MessageLookupByLibrary.simpleMessage(
       "The request timed out.",
     ),
+    "searchPosts": MessageLookupByLibrary.simpleMessage("Search Posts"),
     "sendTimeout": MessageLookupByLibrary.simpleMessage(
       "Request timed out while sending data.",
     ),

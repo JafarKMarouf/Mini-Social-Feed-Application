@@ -13,11 +13,19 @@ class PostListCubit extends Cubit<PostListState> {
   int _currentPage = 0;
   int _nextPage = 0;
   int _pageSize = 10;
+  String _currentSearch = '';
+  String? _currentMediaType;
 
-  Future<void> fetchPostList() async {
+  Future<void> fetchPostList({String? search, String? mediaType}) async {
     _currentPage = 0;
     _nextPage = 0;
     _pageSize = 10;
+    if (search != null) {
+      _currentSearch = search;
+    }
+    if (mediaType != null) {
+      _currentMediaType = mediaType;
+    }
 
     emit(PostListLoading());
 
@@ -42,6 +50,8 @@ class PostListCubit extends Cubit<PostListState> {
       request: FetchPostListRequest(
         nextPage: _nextPage,
         currentPage: _currentPage,
+        search: _currentSearch,
+        mediaType: _currentMediaType,
       ),
     );
 
