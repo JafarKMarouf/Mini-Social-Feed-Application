@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_social_feed/core/l10n/l10n.dart';
+import 'package:mini_social_feed/core/routes/app_navigator.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/font_manager.dart';
 import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
@@ -42,7 +43,7 @@ Widget appAlertDialog(
     ),
     actions: [
       TextButton(
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () => AppNavigator.pop(isRoot: false),
         child: AppTextWidget(
           text: AppLocalizations().cancel,
           fontSize: FontSizeManager.fs15,

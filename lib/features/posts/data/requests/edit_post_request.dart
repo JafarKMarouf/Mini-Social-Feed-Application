@@ -27,11 +27,10 @@ class EditPostRequest {
   }
 
   static Future<FormData> createFormData(EditPostRequest request) async {
-    final Map<String, dynamic> map = {};
-    final formData = FormData.fromMap(map);
-
-    if (request.title != null) map['title'] = request.title;
-    if (request.content != null) map['content'] = request.content;
+    final formData = FormData.fromMap({
+      'title': request.title,
+      'content': request.content,
+    });
 
     if (request.removedMediaIds != null &&
         request.removedMediaIds!.isNotEmpty) {
@@ -39,12 +38,11 @@ class EditPostRequest {
         formData.fields.add(MapEntry('remove_media_ids[]', id.toString()));
       }
     }
-
     if (request.media != null && request.media!.isNotEmpty) {
       for (final file in request.media!) {
         formData.files.add(
           MapEntry(
-            'media',
+            'media[]',
             await MultipartFile.fromFile(
               file.path,
               filename: file.path.split('/').last,
@@ -53,6 +51,7 @@ class EditPostRequest {
         );
       }
     }
+
     return formData;
   }
 }

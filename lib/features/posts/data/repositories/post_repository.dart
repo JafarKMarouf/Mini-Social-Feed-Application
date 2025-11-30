@@ -102,9 +102,7 @@ class PostRepositoryImpl extends PostRepository {
   }
 
   @override
-  Future<Either<Failure, ApiResponse>> deletePost({
-    required int postId,
-  }) async {
+  Future<Either<Failure, ApiResponse>> deletePost({required int postId}) async {
     try {
       var result = await getIt<PostRemoteDataSource>().deletePost(
         postId: postId,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_social_feed/core/utils/helper/app_snackbar.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
+import 'package:mini_social_feed/core/utils/resources/app_text_style.dart';
+import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
 import 'package:mini_social_feed/core/utils/widgets/loading/loading_overlay.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/delete_post_cubit/delete_post_cubit.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/post_list_cubit/post_list_cubit.dart';
@@ -58,6 +60,7 @@ class _FeedsViewState extends State<FeedsView> {
           children: [
             CustomScrollView(
               controller: _scrollController,
+              physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
                 const SliverToBoxAdapter(child: FeedsHeader()),
                 const SliverToBoxAdapter(child: StoriesSection()),
@@ -78,7 +81,14 @@ class _FeedsViewState extends State<FeedsView> {
                       );
                     } else if (state is PostListFailure) {
                       return SliverToBoxAdapter(
-                        child: Center(child: Text('Error: ${state.errMsg}')),
+                        child: Center(
+                          child: AppTextWidget(
+                            text: 'Error: ${state.errMsg}',
+                            style: AppTextStyle.styleUrbanistBold22(
+                              context,
+                            ).copyWith(color: AppColorManager.white),
+                          ),
+                        ),
                       );
                     } else if (state is PostListSuccess) {
                       return SliverList.builder(

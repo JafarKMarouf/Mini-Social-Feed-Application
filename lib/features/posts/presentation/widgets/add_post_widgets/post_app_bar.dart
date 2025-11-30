@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
+import 'package:mini_social_feed/core/utils/resources/app_text_style.dart';
+import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
 
-class CreatePostAppBar extends StatelessWidget {
+class PostAppBar extends StatelessWidget {
+  final String title;
   final void Function()? publishPost;
+  final void Function()? discard;
 
-  const CreatePostAppBar({super.key, this.publishPost});
+  const PostAppBar({
+    super.key,
+    this.publishPost,
+    required this.discard,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +24,7 @@ class CreatePostAppBar extends StatelessWidget {
       leadingWidth: 80,
       leading: Center(
         child: TextButton(
-          onPressed: () {},
+          onPressed: discard,
           child: const Text(
             'Discard',
             style: TextStyle(
@@ -26,14 +35,9 @@ class CreatePostAppBar extends StatelessWidget {
           ),
         ),
       ),
-      title: const Text(
-        'CREATE',
-        style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 1.2,
-          color: Colors.white,
-        ),
+      title: AppTextWidget(
+        text: title,
+        style: AppTextStyle.styleUrbanistBold22(context).copyWith(color: AppColorManager.white),
       ),
       centerTitle: true,
       actions: [
@@ -41,7 +45,7 @@ class CreatePostAppBar extends StatelessWidget {
           padding: const EdgeInsets.only(right: 16.0),
           child: Center(
             child: ElevatedButton(
-              onPressed:publishPost,
+              onPressed: publishPost,
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFFF2D88),
                 foregroundColor: Colors.white,

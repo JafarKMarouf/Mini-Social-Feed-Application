@@ -28,18 +28,15 @@ class ApiService {
     bool requiresAuth = false,
     bool optionalAuth = false,
   }) async {
-    Options options;
+    log('┌────────────────────────────── post url: $url ──────────────────────────────');
+
     if (body is FormData) {
-      options = Options(
-        headers: _headers(token, isFormData: true),
-        extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
-      );
-    } else {
-      options = Options(
-        headers: _headers(token),
-        extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
-      );
+      logFormData(body);
     }
+    final options = Options(
+      headers: _headers(token, isFormData: body is FormData),
+      extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
+    );
     var response = await _dio.post(url, data: body, options: options);
     return response;
   }
@@ -51,18 +48,15 @@ class ApiService {
     bool requiresAuth = false,
     bool optionalAuth = false,
   }) async {
-    Options options;
+    log('┌────────────────────────────── put url: $url ──────────────────────────────');
     if (body is FormData) {
-      options = Options(
-        headers: _headers(token, isFormData: true),
-        extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
-      );
-    } else {
-      options = Options(
-        headers: _headers(token),
-        extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
-      );
+      logFormData(body);
     }
+    final options = Options(
+      headers: _headers(token, isFormData: body is FormData),
+      extra: {'requiresAuth': requiresAuth, 'optionalAuth': optionalAuth},
+    );
+
     return await _dio.put(url, data: body, options: options);
   }
 
@@ -73,7 +67,6 @@ class ApiService {
     bool requiresAuth = false,
     bool optionalAuth = false,
   }) async {
-    log('===============delete url:$url');
     return await _dio.delete(
       url,
       data: body,
@@ -89,10 +82,47 @@ class ApiService {
     if (!isFormData) {
       headers['Content-Type'] = 'application/json';
     }
+    if (isFormData) {
+      headers['Content-Type'] = 'multipart/form-data';
+    }
 
     if (token != null) {
       headers['Authorization'] = 'Bearer $token';
     }
+    headers['Accept'] = 'application/json';
     return headers;
   }
+}
+
+void logFormData(FormData formData) {
+  log('┌──────────────────────────────────────────────────────────────────');
+  log('│ 📋 FORM DATA LOG');
+  log('├──────────────────────────────────────────────────────────────────');
+
+  // 1. Log Text Fields
+  if (formData.fields.isEmpty) {
+    log('│ 📝 Fields: [EMPTY]');
+  } else {
+    log('│ 📝 Fields:');
+    for (var field in formData.fields) {
+      log('│    • ${field.key}: ${field.value}');
+    }
+  }
+
+  log('│');
+
+  // 2. Log Files
+  if (formData.files.isEmpty) {
+    log('│ 📁 Files: [EMPTY]');
+  } else {
+    log('│ 📁 Files:');
+    for (var file in formData.files) {
+      // file.value is MultipartFile
+      log('│    • Key: "${file.key}"');
+      log('│      Filename: ${file.value.filename}');
+      log('│      Size: ${file.value.length} bytes');
+      log('│      Content-Type: ${file.value.contentType}');
+    }
+  }
+  log('└──────────────────────────────────────────────────────────────────');
 }

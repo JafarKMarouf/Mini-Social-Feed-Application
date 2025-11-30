@@ -14,6 +14,9 @@ class AppRouteNames {
   static const String create = 'create';
   static const String alert = 'alert';
   static const String profile = 'profile';
+
+  // --- Post Routes ---
+  static const String editPost = 'edit-post';
 }
 
 class AppRoutePaths {
@@ -32,4 +35,7 @@ class AppRoutePaths {
   static const String create = '/create';
   static const String alert = '/alert';
   static const String profile = '/profile';
+
+  // --- Post Paths ---
+  static const String editPost = 'edit/:id';
 }

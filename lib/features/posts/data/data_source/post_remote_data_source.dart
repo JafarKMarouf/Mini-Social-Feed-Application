@@ -105,9 +105,11 @@ class PostRemoteDataSourceImpl extends PostRemoteDataSource {
 
   @override
   Future<ApiResponse<Post>> editPost({required EditPostRequest request}) async {
+    final formData = await EditPostRequest.createFormData(request);
+    // log('--------------edit post form data request :${formData.fields}');
     var data = await getIt<ApiService>().put(
       url: '${ApiEndPoints.posts}/${request.id}',
-      body: request.toJson(),
+      body: formData,
       requiresAuth: true,
     );
     return ApiResponse.fromJson(

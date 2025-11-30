@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:mini_social_feed/core/utils/helper/app_snackbar.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/app_text_style.dart';
-import 'package:mini_social_feed/core/utils/resources/size_manager.dart';
 import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
+import 'package:mini_social_feed/core/utils/widgets/cached_image_helper/image_error.dart';
+import 'package:mini_social_feed/core/utils/widgets/cached_image_helper/image_place_holder.dart';
 import 'package:mini_social_feed/features/posts/data/models/post_list_model/media.dart';
 import 'package:mini_social_feed/features/posts/presentation/widgets/feeds_widget/video_player_post_view.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,25 +28,8 @@ class BuildMediaContent extends StatelessWidget {
             imageUrl: media.url!,
             width: double.infinity,
             fit: BoxFit.cover,
-            placeholder: (context, url) => Container(
-              width: double.infinity,
-              height: AppHeightManager.h27,
-              color: AppColorManager.gray,
-              child: const Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 3,
-                  color: AppColorManager.primary,
-                ),
-              ),
-            ),
-            errorWidget: (context, url, error) => Container(
-              width: double.infinity,
-              height: AppHeightManager.h27,
-              color: AppColorManager.dark,
-              child: const Center(
-                child: Icon(Icons.error, color: AppColorManager.darkGray),
-              ),
-            ),
+            placeholder: (context, url) => imagePlaceHolder(),
+            errorWidget: (context, url, error) => imageError(),
           ),
         );
 

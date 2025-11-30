@@ -1,41 +1,33 @@
-import 'dart:io';
-
-import 'package:file_picker/file_picker.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/app_text_style.dart';
 import 'package:mini_social_feed/core/utils/resources/font_manager.dart';
 import 'package:mini_social_feed/core/utils/resources/size_manager.dart';
 import 'package:mini_social_feed/core/utils/widgets/app_text/app_text_widget.dart';
+import 'package:mini_social_feed/core/utils/widgets/cached_image_helper/image_error.dart';
+import 'package:mini_social_feed/core/utils/widgets/cached_image_helper/image_place_holder.dart';
+import 'package:mini_social_feed/features/posts/data/models/post_list_model/media.dart';
 
-class DisplayMediaGrid extends StatefulWidget {
-  final List<PlatformFile> selectedFiles;
-  final Function(int)? onRemove;
+class DisplayNetworkMediaGrid extends StatefulWidget {
+  final List<Media> mediaList;
+  final Function(Media media) onRemove;
 
-  const DisplayMediaGrid({
+  const DisplayNetworkMediaGrid({
     super.key,
-    required this.selectedFiles,
-    this.onRemove,
+    required this.mediaList,
+    required this.onRemove,
   });
 
   @override
-  State<DisplayMediaGrid> createState() => _DisplayMediaGridState();
+  State<DisplayNetworkMediaGrid> createState() =>
+      _DisplayNetworkMediaGridState();
 }
 
-class _DisplayMediaGridState extends State<DisplayMediaGrid> {
-  void _triggerRemove(int index) {
-    if (widget.onRemove != null) {
-      widget.onRemove!(index);
-    } else {
-      setState(() {
-        widget.selectedFiles.removeAt(index);
-      });
-    }
-  }
-
+class _DisplayNetworkMediaGridState extends State<DisplayNetworkMediaGrid> {
   @override
   Widget build(BuildContext context) {
-    int count = widget.selectedFiles.length;
+    int count = widget.mediaList.length;
     double screenWidth = MediaQuery.of(context).size.width - 32;
     double height = 300;
 
@@ -52,6 +44,7 @@ class _DisplayMediaGridState extends State<DisplayMediaGrid> {
     );
   }
 
+  // --- Grid Layout Logic (Same as your local grid) ---
   Widget _buildGridLayout(int count) {
     if (count == 0) return const SizedBox();
     if (count == 1) {
@@ -81,7 +74,6 @@ class _DisplayMediaGridState extends State<DisplayMediaGrid> {
         ],
       );
     } else {
-      // 4 or more
       return Row(
         children: [
           Expanded(flex: 2, child: _buildTile(0)),
@@ -124,33 +116,38 @@ class _DisplayMediaGridState extends State<DisplayMediaGrid> {
   }
 
   Widget _buildTile(int index) {
-    PlatformFile file = widget.selectedFiles[index];
-    String? ext = file.extension?.toLowerCase();
-
-    bool isImage = ['jpg', 'jpeg', 'png', 'webp', 'heic'].contains(ext);
-    bool isVideo = ['mp4', 'mov', 'avi', 'mkv', 'flv'].contains(ext);
+    final media = widget.mediaList[index];
+    final type = media.mediaType ?? 'document';
 
     Widget content;
 
-    if (isImage) {
-      content = Image.file(File(file.path!), fit: BoxFit.cover);
-    } else if (isVideo) {
+    if (type == 'image') {
+      content = CachedNetworkImage(
+        imageUrl: media.url ?? '',
+        fit: BoxFit.cover,
+        placeholder: (context, url) => imagePlaceHolder(),
+        errorWidget: (context, url, error) => imageError(),
+      );
+    } else if (type == 'video') {
       content = _buildVideoPlaceholder();
     } else {
-      content = _buildDocumentPlaceholder(ext ?? 'DOC', file.name);
+      String ext = 'FILE';
+      if (media.url != null) {
+        ext = media.url!.split('.').last.split('?').first;
+      }
+      content = _buildDocumentPlaceholder(ext, type.toUpperCase());
     }
 
     return Stack(
       fit: StackFit.expand,
       children: [
-        // Background/Content
         content,
-
+        // Remove Button
         Positioned(
           top: 8,
           right: 8,
           child: GestureDetector(
-            onTap: () => _triggerRemove(index),
+            onTap: () => widget.onRemove(media),
             child: Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
@@ -185,7 +182,7 @@ class _DisplayMediaGridState extends State<DisplayMediaGrid> {
     );
   }
 
-  Widget _buildDocumentPlaceholder(String ext, String fileName) {
+  Widget _buildDocumentPlaceholder(String ext, String typeLabel) {
     return Container(
       color: AppColorManager.dark,
       padding: const EdgeInsets.all(8),
@@ -218,7 +215,7 @@ class _DisplayMediaGridState extends State<DisplayMediaGrid> {
           ),
           SizedBox(height: AppHeightManager.h1),
           AppTextWidget(
-            text: fileName,
+            text: typeLabel,
             style: AppTextStyle.styleUrbanistMedium15(context).copyWith(
               color: AppColorManager.white,
               fontSize: FontSizeManager.fs12,
@@ -234,7 +231,7 @@ class _DisplayMediaGridState extends State<DisplayMediaGrid> {
   }
 
   IconData _getIconForExt(String ext) {
-    switch (ext) {
+    switch (ext.toLowerCase()) {
       case 'pdf':
         return Icons.picture_as_pdf;
       case 'doc':
@@ -248,9 +245,9 @@ class _DisplayMediaGridState extends State<DisplayMediaGrid> {
         return Icons.slideshow;
       case 'txt':
         return Icons.text_snippet;
-      case 'zip':
-      case 'rar':
-        return Icons.folder_zip;
+      case 'mp3':
+      case 'wav':
+        return Icons.audio_file;
       default:
         return Icons.insert_drive_file;
     }

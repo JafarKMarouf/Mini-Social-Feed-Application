@@ -20,8 +20,11 @@ import 'package:mini_social_feed/features/intro/presentation/pages/onboarding_vi
 import 'package:mini_social_feed/features/intro/presentation/pages/splash_view.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/create_post_cubit/create_post_cubit.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/delete_post_cubit/delete_post_cubit.dart';
+import 'package:mini_social_feed/features/posts/presentation/cubit/edit_post_cubit/edit_post_cubit.dart';
 import 'package:mini_social_feed/features/posts/presentation/cubit/post_list_cubit/post_list_cubit.dart';
+import 'package:mini_social_feed/features/posts/presentation/cubit/show_post_cubit/show_post_cubit.dart';
 import 'package:mini_social_feed/features/posts/presentation/pages/add_post_view.dart';
+import 'package:mini_social_feed/features/posts/presentation/pages/edit_post_view.dart';
 import 'package:mini_social_feed/features/posts/presentation/pages/feeds_view.dart';
 import 'package:mini_social_feed/features/profile/presentation/views/profile_view.dart';
 
@@ -109,6 +112,25 @@ abstract class AppRouter {
                     child: const FeedsView(),
                   ),
                 ),
+                routes: [
+                  GoRoute(
+                    path: AppRoutePaths.editPost,
+                    name: AppRouteNames.editPost,
+                    builder: (context, state) {
+                      final String postId = state.pathParameters['id']!;
+                      return MultiBlocProvider(
+                        providers: [
+                          BlocProvider(
+                            create: (_) =>
+                                ShowPostCubit()..showPost(postId: postId),
+                          ),
+                          BlocProvider(create: (_) => EditPostCubit()),
+                        ],
+                        child: const EditPostView(),
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),

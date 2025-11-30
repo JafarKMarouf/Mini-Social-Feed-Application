@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_social_feed/core/l10n/l10n.dart';
 import 'package:mini_social_feed/core/routes/app_navigator.dart';
+import 'package:mini_social_feed/core/routes/app_router_constants.dart';
 import 'package:mini_social_feed/core/utils/helper/app_alert_dialog.dart';
 import 'package:mini_social_feed/core/utils/helper/format_date.dart';
 import 'package:mini_social_feed/core/utils/resources/app_color_manager.dart';
@@ -89,11 +90,12 @@ class PostWidget extends StatelessWidget {
                 icon: Icon(Icons.more_vert, color: Colors.grey[500]),
                 onSelected: (value) {
                   if (value == 'edit') {
-                    // Handle Edit Logic
+                    AppNavigator.pushNamed(
+                      AppRouteNames.editPost,
+                      pathParameters: {'id': post.id.toString()},
+                    );
                   } else if (value == 'delete') {
                     _showDeletePostDialog(context);
-                  } else if (value == 'copy') {
-                    // Handle Share Logic
                   }
                 },
                 itemBuilder: (BuildContext context) {
@@ -102,13 +104,6 @@ class PostWidget extends StatelessWidget {
                       value: 'edit',
                       child: AppTextWidget(
                         text: AppLocalizations().editPost,
-                        color: AppColorManager.white,
-                      ),
-                    ),
-                    PopupMenuItem(
-                      value: 'copy',
-                      child: AppTextWidget(
-                        text: AppLocalizations().copyLink,
                         color: AppColorManager.white,
                       ),
                     ),
